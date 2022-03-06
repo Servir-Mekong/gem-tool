@@ -1,0 +1,213 @@
+{% load static i18n %}
+{% load cms_tags menu_tags sekizai_tags %}
+<!DOCTYPE html>
+<html lang="[[ lang ]]">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge;chrome=1" />
+	<link rel="icon" href="{% static 'images/favicon.png' %}" type="image/png">
+  	<title>{% block title %} GEM {% endblock %}</title>
+	<!-- fonts -->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500|Rubik:500,700">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+	<!-- Bootstrap Plugins -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="{% static 'vendors/linericon/style.css' %}">
+	<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+	<link rel="stylesheet" href="{% static 'vendors/owl-carousel/owl.carousel.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+	<!-- ng-Dialog -->
+	<link href="{% static 'vendors/ng-dialog/css/ngDialog.min.css' %}" rel="stylesheet">
+	<link href="{% static 'vendors/ng-dialog/css/ngDialog-theme-default.min.css' %}" rel="stylesheet">
+	<!--highchart Js-->
+	<link rel="stylesheet" href="{% static 'vendors/highcharts/css/highcharts.css' %}">
+	<link href="https://api.mapbox.com/mapbox-gl-js/v2.3.0/mapbox-gl.css" rel="stylesheet">
+	<!--Plugin CSS file with desired skin-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/css/ion.rangeSlider.min.css"/>
+	<!-- main css -->
+	{% if debug %}
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+	{% else %}
+	<link rel="stylesheet" href="{% static 'dist/application.min.css' %}">
+	{% endif %}
+	<link rel="stylesheet" href="//cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="{% static 'js/popper.js' %}"></script>
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<!-- Bootstrap Plugins -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
+	<script src="{% static 'js/stellar.js' %}"></script>
+	<script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+	<!--Plugin JavaScript file-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/js/ion.rangeSlider.min.js"></script>
+	<!--  Load Angular  -->
+	<script src="{% static 'vendors/angular/angular.min.js' %}"></script>
+	<!-- Angular Dependent Library -->
+	<script src="{% static 'vendors/angularjs-slider/dist/rzslider.min.js' %}"></script>
+	<!--Angular Dialogue -->
+	<script src="{% static 'vendors/ng-dialog/js/ngDialog.min.js' %}"></script>
+	<!--Angular Strap -->
+	<script src="{% static 'vendors/angular-strap/dist/angular-strap.min.js' %}"></script>
+	<script src="{% static 'vendors/angular-strap/dist/angular-strap.tpl.min.js' %}"></script>
+	<script src="{% static 'vendors/angular-file-saver/dist/angular-file-saver.bundle.min.js' %}"></script>
+	<script src="{% static 'vendors/angular-spinner/dist/angular-spinner.min.js' %}"></script>
+	<!-- Angular Translation -->
+	<script src="//cdnjs.cloudflare.com/ajax/libs/angular-translate/2.18.1/angular-translate.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/angular-translate/2.18.1/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
+	<!-- Bootstrap Application -->
+	<script src="{% static 'app/init.js' %}"></script>
+	<script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+	<!--highchart Js-->
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="https://code.highcharts.com/highcharts-more.js"></script>
+	<script src="https://code.highcharts.com/modules/exporting.js"></script>
+	<script src="https://code.highcharts.com/modules/export-data.js"></script>
+	<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+	<script src="https://code.highcharts.com/highcharts-3d.js"></script>
+	<script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+	<script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script>
+	<script src="https://api.mapbox.com/mapbox-gl-js/v2.3.0/mapbox-gl.js"></script>
+	<script src="{% static 'js/theme.js' %}"></script>
+	{% if debug %}
+	<script src="{% static 'app/services/api.js' %}"></script>
+	<script src="{% static 'app/controllers/settings.js' %}"></script>
+	<script src="{% static 'app/controllers/homecontroller.js' %}"></script>
+	<script src="{% static 'app/controllers/mapcontroller.js' %}"></script>
+	<script src="{% static 'app/controllers/map2controller.js' %}"></script>
+	<script src="{% static 'app/controllers/referencecontroller.js' %}"></script>
+	<script src="{% static 'app/controllers/downloadcontroller.js' %}"></script>
+	<script src="{% static 'app/controllers/downloaddatasetcontroller.js' %}"></script>
+	{% else %}
+	<script src="{% static 'dist/application.min.js' %}"></script>
+	{% endif %}
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+	<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-13DLVH9946"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+
+		gtag('config', 'G-13DLVH9946');
+	</script>
+</head>
+
+<body>
+	<style type="text/css">
+		/** Hide when Angular is not yet loaded and initialized */
+		[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+			display: none !important;
+		}
+	</style>
+	<!-- ======= Top Bar ======= -->
+	<section id="topbar" class="d-none d-lg-block">
+		<div class="container">
+		  <div class="float-left">
+			<a href="https://www.usaid.gov/" target="_blank">
+				<img class="grow img-responsive usaid" src="{% static '' %}images/usaid.png" alt="The United States Agency for International Developmen">
+			</a>
+			<a href="https://www.nasa.gov/" target="_blank">
+				<img class="grow img-responsive nasa" src="{% static '' %}images/nasa.png" alt="The National Aeronautics and Space Administration">
+			</a>
+			<a href="http://www.adpc.net/" target="_blank">
+				<img class="grow img-responsive adpc" src="{% static '' %}images/adpc.png" alt="Asian Disaster Preparedness Center">
+			</a>
+		  </div>
+		  <div class="float-right">
+			<a href="https://servir.adpc.net/" target="_blank">
+				<img class="grow img-responsive servir" src="{% static '' %}images/servir-mekong.png" alt="SERVIR">
+			</a>
+		  </div>
+		</div>
+	  </section>
+
+	<!--================ Start Header Area =================-->
+	<header class="header_area" ng-controller="settingsCtrl">
+			<nav class="navbar navbar-expand-lg navbar-light">
+				<div class="container">
+					<a class="navbar-brand logo_h" href="/">[[ 'GENDER EQUALITY MONITORING ' | translate ]]</a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+					 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarSupportedContent" style="background: #FFF;">
+						<ul class="nav navbar-nav menu_nav justify-content-end">
+							<li class="nav-item"><a ng-click="changeLanguage('en')" class="nav-link"><span> <img src="{% static '' %}images/flags/usa-uk.jpg" height="15px;"/></span> English </a></li>
+							<li class="nav-item"><a ng-click="changeLanguage('vn')" class="nav-link"><span> <img src="{% static '' %}images/flags/vn.svg" height="15px;"/></span> Tiếng Việt </a></li>
+							<li class="nav-item"><a ng-click="changeLanguage('th')" class="nav-link"><span> <img src="{% static '' %}images/flags/th.svg" height="15px;"/></span> ภาษาไทย </a></li>
+							<li class="nav-item"><a ng-click="changeLanguage('kh')" class="nav-link"><span> <img src="{% static '' %}images/flags/kh.svg" height="15px;"/></span> ភាសាខ្មែរ </a></li>
+							<li class="nav-item"><a ng-click="changeLanguage('la')" class="nav-link"><span> <img src="{% static '' %}images/flags/la.svg" height="15px;"/></span> ພາສາລາວ </a></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</div>
+	</header>
+	<!--================ End Header Area =================-->
+
+	<!--================ Start  =================-->
+	{% block content %}{% endblock %}
+
+
+	<!--================Footer Area =================-->
+	<footer class="footer_area section_gap">
+
+		<div class="container">
+
+			<div class="row " style="margin-bottom: 20px;">
+				<div class="col-lg-6">
+					<div class="footer_top flex-column">
+						<img src="/static/images/servir-mekong.png" alt="servir-mekong" width="70%">
+						<h4>ASIAN DISASTER PREPAREDNESS CENTER (ADPC)</h4>
+						<p>SM Tower, 24th Floor, 979/69 Paholyothin Road, Samsen Nai Phayathai,</p>
+						<p>Bangkok 10400 Thailand</p>
+						<p>BTS Skytrain: Sanam Pao, Exit 1</p>
+						<p>Phone: +66 2 298 0681-92</p>
+						<p>Fax: +66 2 298 0012</p>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div class="footer_top flex-column">
+						<br>
+						<h4>[[' MENU LINKS' | translate ]]</h4>
+						<ul style="font-size: 12px; columns: 2;-webkit-columns: 2; -moz-columns: 2; padding: 0px; list-style: none;">
+							<li><a href="/">[[' HOME' | translate ]]</a></li>
+							<li><a href="/about/">[[' ABOUT' | translate ]]</a></li>
+							<li><a href="/map/">[[' GENDER INEQUALITY INDEX (GII)' | translate ]]</a></li>
+							<li><a href="/map-dataset/">[[' SECTORAL GENDER GAPS' | translate ]]</a></li>
+							<li><a href="/download-data/">[[' DOWNLOAD GII' | translate ]]</a></li>
+							<li><a href="/download-dataset/">[[' DOWNLOAD SECTORAL DISAGGREGATED DATA' | translate ]]</a></li>
+							<li><a href="/reference/">[[' REFERENCES' | translate ]]</a></li>
+							<li><a href="https://www.canva.com/design/DAEoRaECPws/XX4vV_SSeLw9rYuAPLS5lQ/view?website#2:main-features" target="_blank">[[' USER GUIDE' | translate ]]</a></li>
+							<li><a href="https://docs.google.com/document/d/e/2PACX-1vRdKi-LWf1c0blcVTbo05YPprCn8pLOkrLSJb8JOQHaZusgZ07TN_0LbhxjvS2N4AHETZWjuFOQnMnI/pub" target="_blank">[[' DATA SOURCES' | translate ]]</a></li>
+						</ul>
+					</div>
+				</div>
+		</div>
+		</div>
+		<div class="container-fluid" style="background: linear-gradient(120deg,#2A3783 0%,#1B949F 100%); color:#FFF;">
+			<div class="row footer_bottom justify-content-center">
+				<p class="footer-text">
+					Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
+			</div>
+		</div>
+	</footer>
+	<!--================End Footer Area =================-->
+
+</body>
+</html>

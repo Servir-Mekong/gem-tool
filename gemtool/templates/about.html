@@ -1,0 +1,236 @@
+
+{% extends "base.html" %}
+{% load static i18n %}
+{% block title %} GEM {% endblock %}
+
+{% block content %}
+
+<div ng-controller="referencecontroller">
+  <!--================ Start Home Banner Area =================-->
+  <section class="portfolio_area" id="portfolio" style="background: linear-gradient( 120deg ,#2A3783 0%,#1B949F 100%);padding-bottom: 0;">
+    <div id="nav-menu" class="container">
+      <ul  class="nav nav-pills">
+        <li><a  href="/" class="tip">[[ 'HOME' | translate ]]<span>Home page: Introduction</span></a></li>
+        <li  class="active"><a  href="/about/" class="tip">[[ 'ABOUT' | translate ]]<span>About our project and team members</span></a></li>
+        <li><a  href="/map/" class="tip">[[ 'GENDER INEQUALITY INDEX' | translate ]]<span>GII interactive map</span></a></li>
+        <li><a href="/map-dataset/" class="tip">[[ 'SECTORAL GENDER GAPS' | translate ]]<span>Dataset page: Original gender dataset interactive map</span></a></li>
+        <li class="nav-item submenu dropdown" style="padding: 0;">
+          <a href="#" class="nav-link dropdown-toggle tip" data-toggle="dropdown" role="button" aria-haspopup="true"
+          aria-expanded="false" style="padding: 5px 20px;">[[ 'DOWNLOAD' | translate ]]<span>Download GII data and original gender dataset</span></a>
+          <ul class="dropdown-menu">
+            <li class="nav-item" style="padding-right: 5px; padding-left: 5px;  padding-top: 5px; padding-bottom: 5px; font-size: 12px;"><a href="/download-data/" class="nav-link" style="color: #000; padding: 5px 5px;">  [[ 'GENDER INEQUALITY INDEX' | translate ]]</a></li>
+            <li class="nav-item" style="padding-right: 5px; padding-left: 5px;  padding-top: 5px; padding-bottom: 5px; font-size: 12px;"><a href="/download-dataset/" class="nav-link" style="color: #000; padding: 5px 5px;">  [[ 'SECTORAL DISAGGREGATED DATA' | translate ]]</a></li>
+          </ul>
+        </li>
+        <li class="nav-item submenu dropdown" style="padding: 0;">
+          <a href="#" class="nav-link dropdown-toggle tip" data-toggle="dropdown" role="button" aria-haspopup="true"
+          aria-expanded="false" style="padding: 5px 20px;">[[ 'REFERENCES' | translate ]]<span>Reference and user guides</span></a>
+          <ul class="dropdown-menu">
+            <li class="nav-item" style="padding-right: 5px; padding-left: 5px;  padding-top: 5px; padding-bottom: 5px; font-size: 12px;"><a href="/reference/" class="nav-link" style="color: #000; padding: 5px 5px;">  [[ 'METHODOLOGY' | translate ]]</a></li>
+            <li class="nav-item" style="padding-right: 5px; padding-left: 5px;  padding-top: 5px; padding-bottom: 5px; font-size: 12px;"><a href="https://www.canva.com/design/DAEoRaECPws/XX4vV_SSeLw9rYuAPLS5lQ/view?website#2:main-features" target="_blank" class="nav-link" style="color: #000; padding: 5px 5px;">  [[ 'USER GUIDE' | translate ]]</a></li>
+            <li class="nav-item" style="padding-right: 5px; padding-left: 5px;  padding-top: 5px; padding-bottom: 5px; font-size: 12px;"><a href="https://docs.google.com/document/d/e/2PACX-1vRdKi-LWf1c0blcVTbo05YPprCn8pLOkrLSJb8JOQHaZusgZ07TN_0LbhxjvS2N4AHETZWjuFOQnMnI/pub" target="_blank" class="nav-link" style="color: #000; padding: 5px 5px;">  [[ 'DATA SOURCES' | translate ]]</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!--================ Start =================-->
+  <section class="about_area section_gap">
+    <div class="container">
+      <div class="row justify-content-start align-items-center">
+        <div class="col-lg-12" style="background: #283f85;padding: 20px; font-size: 20px; color: #FFF;font-weight: 300;">
+          <div class="main_title text-center">
+
+            “[['ABOUT PAGE MSG' | translate ]]”
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--================ End =================-->
+
+  <!--================ Start =================-->
+  <section class="about_area ">
+    <div class="container">
+      <div class="row justify-content-start align-items-center">
+        <div class="col-lg-12">
+          <div class="main_title text-left">
+            <h2>Our Team and Contributors</h2>
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-6 col-md-6 main_title text-left" style="background: #faf8ff;padding: 10px;">
+                  <div class="row">
+                    <div class="col-lg-4">
+                      <img src="{% static 'images/teams/ha.png' %}" width="70%" alt="">
+                      <p><b>Ha Nguyen</b></p>
+                      <p>gender expert, team leader, <span><a href="https://www.sei.org">SEI</a></span></p>
+                    </div>
+                    <div class="col-lg-4">
+                      <img src="{% static 'images/teams/Dhyey.png' %}" width="70%" alt="">
+                      <p><b>Dhyey Bhatpuria</b></p>
+                      <p>GIS expert, <span><a href="https://www.sei.org">SEI</a></span></p>
+                    </div>
+                    <div class="col-lg-4">
+                      <img src="{% static 'images/teams/chinaporn.png' %}" width="70%" alt="">
+                      <p><b>Chinaporn Meechaiya</b></p>
+                      <p>Hydrologist/ Water and Disaster Theme Lead, <span><a href="https://www.adpc.net/igo/Default.asp?">ADPC</a></span></p>
+                    </div>
+
+                    <div class="col-lg-4">
+                      <img src="{% static 'images/teams/kunnaree.png' %}" width="70%" alt="">
+                      <p><b>Kunnaree Kritiyutanont</b></p>
+                      <p>Web Developer</p>
+                    </div>
+
+                    <div class="col-lg-4">
+                      <img src="{% static 'images/teams/megan.png' %}" width="70%" alt="">
+                      <p><b>Megan Danielson</b></p>
+                      <p>Consultant </p>
+                    </div>
+
+                    <div class="col-lg-4">
+                      <img src="{% static 'images/teams/radhika.png' %}" width="70%" alt="">
+                      <p><b>Radhika Bhandari</b></p>
+                      <p>Data collector, <span><a href="https://www.sei.org">SEI</a></span></p>
+                    </div>
+
+                    <div class="col-lg-4">
+                      <img src="{% static 'images/teams/quang.png' %}" width="70%" alt="">
+                      <p><b>Quang Le</b></p>
+                      <p>Data collector, <span><a href="https://www.sei.org">SEI</a></span></p>
+                    </div>
+
+                    <div class="col-lg-4">
+                      <img src="{% static 'images/teams/Karthi.png' %}" width="70%" alt="">
+                      <p><b>Karthikeyan Matheswaran</b></p>
+
+                    </div>
+
+                    <div class="col-lg-4">
+                      <img src="{% static 'images/teams/jenny-han.png' %}" width="70%" alt="">
+                      <p><b>Jenny han</b></p>
+                    </div>
+
+                    <div class="col-lg-4">
+                      <img src="{% static 'images/teams/camille-pross.png' %}" width="70%" alt="">
+                      <p><b>Camille Pross</b></p>
+                      <p><span><a href="https://www.sei.org">SEI</a></span></p>
+                    </div>
+
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <p style="font-size: 14px;">
+                    The idea of creating a data platform to track gender gaps was born during a conversation between SERVIR-Mekong, led by Ha Nguyen of Stockholm Environment Institute (SEI), and Vietnam Women’s Union (VWU) back in 2017, while we were exploring ways to build a community of practice on gender and geospatial technology. As ministry-equivalent agency, the VWU needs to access gender data to monitor progress towards achieving gender equality at local levels. Having data platform like the GEM would also enable them ‘to promote competition between provinces’ and ‘to advice on gender-responsive policies’, reflected Minh Huong, the Head of Information - Education - Communication Department of the VWU.
+                  </p>
+                  <p style="font-size: 14px;">The GEM platform is developed by a team of gender and GIS specialists in SEI: Ha Nguyen as the lead in conceptualizing the platform and supervising its development; Dhyey Bhapuria as the key expert in data management and calculation of sub-national GII; Camille Pross and Jenny Han who supported in data collection; and Karthi Matheswaran who supported the platform development in various capacity, including creating a web-story for the GEM platform and initiating the design of its logo.</p>
+                  <p style="font-size: 14px;">The platform would not be completed without substantial contribution and hard work of many interns namely Megan Danielson who pioneered the adaptation of GII calculation to sub-national level and set the first brick for the data repository; Radhika Bhandari and Quang Le who ventured into labyrinth of statistical materials and sources to collected and processed gender disaggregated data for the whole Mekong region.</p>
+                  <p style="font-size: 14px;">For those who have known the GEM platform in its infantry stage, the platform has gone through a total revamp. It new design is created by Kunnaree Kritiyutanont, with brilliant advices and zealous support from Peeranan Towashiraporn and Chinaporn Meechaiya (Pin) from the SERVIR-Mekong team. </p>
+                  <p style="font-size: 14px;">Back to where it comes from, we are grateful for the encouragement and support that the Vietnam Women’s Union and Cambodia’s Ministry of Women Affairs have given to the team through various consultations during the making of the GEM platform.</p>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--================ End =================-->
+
+  <!--================ Start =================-->
+  <section class="about_area section_gap">
+    <div class="container">
+      <div class="row justify-content-start align-items-center">
+        <div class="col-lg-12">
+          <div class="main_title text-left">
+            <h2>Production Supported by</h2>
+            <p style="font-size: 14px;">The development of the Gender Equality Monitoring (GEM) tool is supported by <a href="https://www.usaid.gov/what-we-do/gender-equality-and-womens-empowerment/womens-economic-empowerment">USAID's Women's Economic Empowerment</a> initiative.</p>
+            <div class="col-lg-12">
+              <div class="row">
+
+                <div class="col-lg-3 col-md-6 text-center">
+                  <div class="feature-box" style="border:none;">
+                    <div class="feature-img">
+                      <a href="https://www.usaid.gov/" target="_blank"><img src="{% static 'images/usaid.png' %}" style="width:200px;"  alt=""></a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 text-center">
+                  <div class="feature-box" style="border:none;">
+                    <div class="feature-img">
+                      <a href="https://www.nasa.gov/" target="_blank"><img src="{% static 'images/nasa.png' %}" style="width:80px;" alt=""></a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 text-center">
+                  <div class="feature-box" style="border:none;">
+                    <div class="feature-img">
+                      <a href="https://www.adpc.net/igo/?" target="_blank"><img src="{% static 'images/adpc.png' %}" style="width:120px;"  alt=""></a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 text-center">
+                  <div class="feature-box" style="border:none;">
+                    <div class="feature-img">
+                      <a href="https://servir.adpc.net/" target="_blank"><img src="{% static 'images/servir-mekong.png' %}" style="width:250px;margin-top: 15px;"  alt=""></a>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="row">
+
+                <div class="col-lg-4 col-md-6 text-center">
+                  <div class="feature-box" style="border:none;">
+                    <div class="feature-img">
+                      <a href="https://sig-gis.com/" target="_blank"><img src="{% static 'images/sig.png' %}" style="width:200px;"  alt=""></a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 text-center">
+                  <div class="feature-box" style="border:none;">
+                    <div class="feature-img">
+                      <a href="https://www.sei.org/" target="_blank"><img src="{% static 'images/sei.png' %}" style="width:120px;"  alt=""></a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 text-center">
+                  <div class="feature-box" style="border:none;">
+                    <div class="feature-img">
+                      <a href="https://www.deltares.nl/en/" target="_blank"><img src="{% static 'images/deltares.png' %}" style="width:150px;"  alt=""></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="about_area section_gap">
+    <div class="container">
+      <div class="row justify-content-start align-items-center">
+        <div class="col-lg-12">
+          <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScvm3NYNpq0q_NcfIFKTthBCLuw93EU7EK6rld-xHqiITtN_w/viewform?embedded=true" width="100%" height="600px" frameborder="0" marginheight="0" marginwidth="0" style="font-size: 12px;">Loading…</iframe>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+
+
+
+  {% endblock %}

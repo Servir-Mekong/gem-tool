@@ -1,0 +1,26 @@
+
+# python compile files
+# ===========
+*.pyc
+
+static/*
+# Setting and config files
+#gemtool/settings.py
+
+
+# Unused templates
+# ======================
+
+# Vendor files
+# ======================
+#air-quality-explorer/static/vendor/*
+
+gemtool/setting.py 
+# Exception to the rule
+!gemtool/static/dist/README.md
+
+# Node and related environment
+# ======================
+.npmignore
+node_modules/
+_pycache_/

@@ -1,0 +1,173 @@
+
+{% extends "base.html"  %}
+{% load static i18n %}
+{% load cms_tags %}
+{% block title %} GEM {% endblock %}
+
+{% block content %}
+
+<div>
+
+  <!--================ Start Home Banner Area =================-->
+  <section class="home_banner_area">
+    <div class="banner_inner">
+      <div class="container">
+        <div class="col-lg-6" style="padding-right: 0; padding-left: 0;">
+          <div class="banner_content">
+            <div class="col-lg-12">
+              <img src="{% static 'images/banner/GEM-black_01.png' %}" alt="" width="80%">
+            </div>
+            <div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="portfolio_area" id="portfolio">
+    <div id="nav-menu" class="container" style="padding-right: 10px; padding-left: 10px;">
+      <ul  class="nav nav-pills" style="background: linear-gradient( 120deg ,#2A3783 0%,#1B949F 100%);padding-bottom: 0; box-shadow: 0 4px 2px -2px gray;">
+        <li><a  href="/" class="tip">[[ 'HOME' | translate ]]<span>Home page: Introduction</span></a></li>
+        <li><a  href="/about/" class="tip">[[ 'ABOUT' | translate ]]<span>About our project and team members</span></a></li>
+        <li><a  href="/map/" class="tip">[[ 'GENDER INEQUALITY INDEX' | translate ]]<span>GII interactive map</span></a></li>
+        <li><a href="/map-dataset/" class="tip">[[ 'SECTORAL GENDER GAPS' | translate ]]<span>Dataset page: Original gender dataset interactive map</span></a></li>
+        <li class="nav-item submenu dropdown" style="padding: 0;">
+          <a href="#" class="nav-link dropdown-toggle tip" data-toggle="dropdown" role="button" aria-haspopup="true"
+          aria-expanded="false" style="padding: 5px 20px;">[[ 'DOWNLOAD' | translate ]]<span>Download GII data and original gender dataset</span></a>
+          <ul class="dropdown-menu">
+            <li class="nav-item" style="padding-right: 5px; padding-left: 5px;  padding-top: 5px; padding-bottom: 5px; font-size: 12px;"><a href="/download-data/" class="nav-link" style="color: #000; padding: 5px 5px;">  [[ 'GENDER INEQUALITY INDEX' | translate ]]</a></li>
+            <li class="nav-item" style="padding-right: 5px; padding-left: 5px;  padding-top: 5px; padding-bottom: 5px; font-size: 12px;"><a href="/download-dataset/" class="nav-link" style="color: #000; padding: 5px 5px;">  [[ 'SECTORAL DISAGGREGATED DATA' | translate ]]</a></li>
+          </ul>
+        </li>
+        <li class="nav-item submenu dropdown" style="padding: 0;">
+          <a href="#" class="nav-link dropdown-toggle tip" data-toggle="dropdown" role="button" aria-haspopup="true"
+          aria-expanded="false" style="padding: 5px 20px;">[[ 'REFERENCES' | translate ]]<span>Reference and user guides</span></a>
+          <ul class="dropdown-menu">
+            <li class="nav-item" style="padding-right: 5px; padding-left: 5px;  padding-top: 5px; padding-bottom: 5px; font-size: 12px;"><a href="/reference/" class="nav-link" style="color: #000; padding: 5px 5px;">  [[ 'METHODOLOGY' | translate ]]</a></li>
+            <li class="nav-item" style="padding-right: 5px; padding-left: 5px;  padding-top: 5px; padding-bottom: 5px; font-size: 12px;"><a href="https://www.canva.com/design/DAEoRaECPws/XX4vV_SSeLw9rYuAPLS5lQ/view?website#2:main-features" target="_blank" class="nav-link" style="color: #000; padding: 5px 5px;">  [[ 'USER GUIDE' | translate ]]</a></li>
+            <li class="nav-item" style="padding-right: 5px; padding-left: 5px;  padding-top: 5px; padding-bottom: 5px; font-size: 12px;"><a href="https://docs.google.com/document/d/e/2PACX-1vRdKi-LWf1c0blcVTbo05YPprCn8pLOkrLSJb8JOQHaZusgZ07TN_0LbhxjvS2N4AHETZWjuFOQnMnI/pub" target="_blank" class="nav-link" style="color: #000; padding: 5px 5px;">  [[ 'DATA SOURCES' | translate ]]</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </section>
+  <!--================ End Home Banner Area =================-->
+
+  <!--================ Start  =================-->
+  <section class="about_area">
+    <div class="container">
+      <div class="row justify-content-start align-items-center">
+        <div class="col-lg-12">
+          <div class="main_title text-left">
+            <h2><br>Tracking progress on gender equality through data<br></h2>
+            <p style="font-size: 14px;">
+              Accessing gender statistics is critical to examine and track changes in gender inequality. However, in the Lower Mekong Region, gender statistics such as Gender Inequality Index (GII) are only available at national level primarily to serve the purpose of reporting to international community. Sex dis-aggregated data at sub-national level are not always publicly accessible. This makes it difficult to track the performance of promoting gender equality within countries.
+            </p>
+            <p style="font-size: 14px;">
+              The Gender Equality Monitoring (GEM) platform offers officially published data and periodically updated sex disaggregated data repository for public use. It visualizes gender gaps at subnational level in various sectors such as education, health, employment, access to information, intra-household decision-making, political participation, as well as gender inequality index (GII). These are starting points to further explore the causes and more complex dynamics of gender inequality.
+            </p>
+            <p style="font-size: 14px;">
+              The GEM Platform can be used by gender advocates, policymakers, researchers and development practitioners to:
+            </p>
+            <ul style="font-size: 14px;">
+              <li>Identify gender data gaps in sectors at sub-national level</li>
+              <li>Establish baseline data for tracking gender inequality </li>
+              <li>Understand subnational level dynamics that contribute to gender inequality</li>
+              <li>Increase interministerial cooperation on data collection, data sharing, gender analysis and gender-responsive planning</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--================ End  =================-->
+
+  <!--================ Start =================-->
+  <section class="about_area section_gap">
+    <div class="container">
+      <div class="row justify-content-start align-items-center">
+        <div class="col-lg-12">
+          <div class="main_title text-left">
+            <h2>Exploring The Data</h2>
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                  <div class="single-brand-item d-table">
+                    <div class="d-table-cell text-center" style="padding: 10px;">
+                      <a href="/map" target="_blank"><img src="{% static 'images/icons/gii_icon.png' %}" style="width:200px;"  alt=""></a>
+                      <h4>Gender Inequality Index</h4>
+                      <p>Gender Inequality Index (GII) is developed by UN to measure inequality between women and men in three dimensions i.e. reproductive health, labor market and empowerment across countries. ‘It shows the loss in potential human development due to inequality between female and male achievements in these dimensions’ (Technical Note, Human Development Report 2020, p.8).</p>
+                      <p>The index ranges from 0 (for gender equality) to 1 (gender inequality).</p>
+                      <p>The GEM platform offers a unique feature: GII at sub-national level. Thanks to this feature, GII can be used not only for reporting to international community, but also for tracking gender gaps at sub-national level – an important supporting tool for gender-responsive planning.</p>
+                      <p>Some datasets for calculating the GII at sub-national level have been replaced by equivalent data, depending on the availability of data in the countries.</p>
+                      <br>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                  <div class="single-brand-item d-table">
+                    <div class="d-table-cell text-center" style="padding: 10px;">
+                      <a href="/map-dataset" target="_blank"><img src="{% static 'images/icons/gender.png' %}" style="width:200px;" alt=""></a>
+                      <h4>Sectoral Gender Gaps</h4>
+                      <p>Gender inequality is more than a fix number. It is multi-dimensional and subtle. This feature uses sex-disaggregated data to show the gap between women and men in various aspects of human wellbeing e.g. access to school, educational achievement, access to general and reproductive healthcare, HIV treatments, participation in labor market and employment status, intra-household decision making and political participation… In some countries, it shows the difference in their perceptions on gender-based violence. It also offers a glimpse of intersectional inequality when factor in other social status such as migrant, rural and urban.</p>
+                      <p>This feature enables the identification of the sector, sub-sector and location where inequalities exist. Why it does not and cannot explain how and why, such data is crucial for initiating further actions to address the inequalities.</p>
+                      <p></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--================ End =================-->
+
+  <section class="portfolio_area" id="portfolio">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 col-md-6 main-content">
+          <div class="row">
+            <div class="col-lg-12 col-md-6">
+              <div class="feature-articles-title">
+                <h2>OUR PARTNERS</h2>
+                <hr>
+              </div>
+              <div class="row">
+                <div class="col-lg-4 col-md-6 text-center">
+                  <div class="feature-box" style="border:none;">
+                    <div class="feature-img">
+                      <a href="https://sig-gis.com/" target="_blank"><img src="{% static 'images/sig.png' %}" style="width:200px;"  alt=""></a>
+                      <!-- <p>Stockholm Environment Institute</p> -->
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 text-center">
+                  <div class="feature-box" style="border:none;">
+                    <div class="feature-img">
+                      <a href="https://www.sei.org/" target="_blank"><img src="{% static 'images/sei.png' %}" style="width:180px;"  alt=""></a>
+                      <!-- <p>Stockholm Environment Institute</p> -->
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 text-center">
+                  <div class="feature-box" style="border:none;">
+                    <div class="feature-img">
+                      <a href="https://www.deltares.nl/en/" target="_blank"><img src="{% static 'images/deltares.png' %}" style="width:180px;"  alt=""></a>
+                      <!-- <p>Stockholm Environment Institute</p> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+{% endblock %}

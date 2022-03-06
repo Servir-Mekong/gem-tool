@@ -1,0 +1,209 @@
+
+{% extends "base.html" %}
+{% load static i18n %}
+{% block title %} GEM {% endblock %}
+
+{% block content %}
+
+<div ng-controller="referencecontroller">
+
+  <!--================ Start  =================-->
+  <section class="portfolio_area" id="portfolio" style="background: linear-gradient( 120deg ,#2A3783 0%,#1B949F 100%);padding-bottom: 0;">
+    <div id="nav-menu" class="container">
+      <ul  class="nav nav-pills">
+        <li><a  href="/" class="tip">[[ 'HOME' | translate ]]<span>Home page: Introduction</span></a></li>
+        <li><a  href="/about/" class="tip">[[ 'ABOUT' | translate ]]<span>About our project and team members</span></a></li>
+        <li><a  href="/map/" class="tip">[[ 'GENDER INEQUALITY INDEX' | translate ]]<span>GII interactive map</span></a></li>
+        <li><a href="/map-dataset/" class="tip">[[ 'SECTORAL GENDER GAPS' | translate ]]<span>Dataset page: Original gender dataset interactive map</span></a></li>
+        <li class="nav-item submenu dropdown" style="padding: 0;">
+          <a href="#" class="nav-link dropdown-toggle tip" data-toggle="dropdown" role="button" aria-haspopup="true"
+          aria-expanded="false" style="padding: 5px 20px;">[[ 'DOWNLOAD' | translate ]]<span>Download GII data and original gender dataset</span></a>
+          <ul class="dropdown-menu">
+            <li class="nav-item" style="padding-right: 5px; padding-left: 5px;  padding-top: 5px; padding-bottom: 5px; font-size: 12px;"><a href="/download-data/" class="nav-link" style="color: #000; padding: 5px 5px;">  [[ 'GENDER INEQUALITY INDEX' | translate ]]</a></li>
+            <li class="nav-item" style="padding-right: 5px; padding-left: 5px;  padding-top: 5px; padding-bottom: 5px; font-size: 12px;"><a href="/download-dataset/" class="nav-link" style="color: #000; padding: 5px 5px;">  [[ 'SECTORAL DISAGGREGATED DATA' | translate ]]</a></li>
+          </ul>
+        </li>
+        <li class="nav-item submenu dropdown active" style="padding: 0;">
+          <a href="#" class="nav-link dropdown-toggle tip" data-toggle="dropdown" role="button" aria-haspopup="true"
+          aria-expanded="false" style="padding: 5px 20px;">[[ 'REFERENCES' | translate ]]<span>Reference and user guides</span></a>
+          <ul class="dropdown-menu">
+            <li class="nav-item" style="padding-right: 5px; padding-left: 5px;  padding-top: 5px; padding-bottom: 5px; font-size: 12px;"><a href="/reference/" class="nav-link" style="color: #000; padding: 5px 5px;">  [[ 'METHODOLOGY' | translate ]]</a></li>
+            <li class="nav-item" style="padding-right: 5px; padding-left: 5px;  padding-top: 5px; padding-bottom: 5px; font-size: 12px;"><a href="https://www.canva.com/design/DAEoRaECPws/XX4vV_SSeLw9rYuAPLS5lQ/view?website#2:main-features" target="_blank" class="nav-link" style="color: #000; padding: 5px 5px;">  [[ 'USER GUIDE' | translate ]]</a></li>
+            <li class="nav-item" style="padding-right: 5px; padding-left: 5px;  padding-top: 5px; padding-bottom: 5px; font-size: 12px;"><a href="https://docs.google.com/document/d/e/2PACX-1vRdKi-LWf1c0blcVTbo05YPprCn8pLOkrLSJb8JOQHaZusgZ07TN_0LbhxjvS2N4AHETZWjuFOQnMnI/pub" target="_blank" class="nav-link" style="color: #000; padding: 5px 5px;">  [[ 'DATA SOURCES' | translate ]]</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+
+  <!--================ Start=================-->
+  <section class="about_area section_gap">
+    <div class="container">
+      <div class="row justify-content-start align-items-center">
+        <div class="col-lg-6">
+          <div class="main_title text-left">
+            <h2>Methodology</h2>
+            <p style="font-size: 14px;">
+              This GEM platform offers two key functions:
+            </p>
+            <ul>
+              <li> It visualizes gender inequality at sub-national level, including gender inequality index (GII), and gender gaps in various sectors such as education, health, employment, household decision-making etc. using periodically updated and official gender dis-aggregated data.</li>
+              <li> It offers gender data repository for public use.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--================ End=================-->
+
+  <!--================ Start=================-->
+  <section class="about_area">
+    <div class="container">
+      <div class="row justify-content-start align-items-center">
+        <div class="col-lg-8">
+          <div class="about_images">
+            <img class="" src="{% static 'images/about-us.png' %}" alt="" width="100%">
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="main_title text-left">
+            <p>
+              The GII was introduced by UNDP in 2010 to measure inequalities between men and women in three dimensions: reproductive health, empowerment and the labor market. The GII intends to demonstrate the loss in human development due to gender gaps. The GII ranges from 0 (gender equality) to 1 (gender inequality in all measured dimensions) (Human Development Index, 2014). Click here for more information about UNDP's GII methodology.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--================ End=================-->
+
+
+  <!--================ Start=================-->
+  <section class="about_area section_gap">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="col-lg-12">
+            <div class="main_title text-left">
+              <h2>USER GUIDE</h2>
+              <p>
+                Gender Equality Monitoring tool is developed to address two key issues: gender data gap at sub-national level, and accessibility to gender statistics which is critical to examine and track changes in gender inequality.
+              </p>
+              <a href="https://www.canva.com/design/DAEoRaECPws/XX4vV_SSeLw9rYuAPLS5lQ/view?website#2:main-features" target="_blank">Read our tool guidelines to discover more.</a>
+            </div>
+          </div>
+          <div class="col-lg-12">
+            <div class="main_title text-left">
+              <h2>DATA SOURCES</h2>
+              <p>
+                Downloading Data - Vietnam The majority of the data used to create the GII for Vietnam, came directly from the General Statistics Office (GSO) of Vietnam. Access to the GSO statistical data can be found at the following url:
+              </p>
+              <a href="https://docs.google.com/document/u/2/d/e/2PACX-1vRdKi-LWf1c0blcVTbo05YPprCn8pLOkrLSJb8JOQHaZusgZ07TN_0LbhxjvS2N4AHETZWjuFOQnMnI/pub" target="_blank">Click here</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <!-- <div class="main_title text-left">
+            <iframe width="550" height="315"
+            src="https://www.youtube.com/embed/R-qi22rAvuw?autoplay=1&mute=1">
+          </iframe>
+        </div> -->
+      </div>
+
+    </div>
+  </div>
+</section>
+<!--================ End=================-->
+
+<!--================ Start=================-->
+<section class="about_area section_gap">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="main_title text-left">
+          <h2>GII Cambodia</h2>
+          <p>
+            The majority of the data used to create the GII for Cambodia was extracted from the 2014 Cambodia Demographic and Health Survey. Survey access can be found at the following link :
+          </p>
+          <a href="https://dhsprogram.com/data/dataset/Cambodia_Standard-DHS_2014.cfm?flag=0">https://dhsprogram.com/data/dataset/Cambodia_Standard-DHS_2014.cfm?flag=0</a>
+          <p>
+            New users will need to register for the site before they are able to access the raw data. All files for this project were downloaded as STATA files (.dta).The data was processed using STATA version SE. Codes for each individual variable are available upon request via the link <a href="https://adpc365-my.sharepoint.com/personal/kittiphong_adpc_net/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fkittiphong%5Fadpc%5Fnet%2FDocuments%2FGender%20Index%20Tool%2FPublic%20Sharing%2FSTATA&originalPath=aHR0cHM6Ly9hZHBjMzY1LW15LnNoYXJlcG9pbnQuY29tLzpmOi9nL3BlcnNvbmFsL2tpdHRpcGhvbmdfYWRwY19uZXQvRWlIQ3BVMkZWUFpKcnJ3aWxCSU9QR0FCU0RCX0tfUHQ2THNzWjhjX3FyLVhHUT9ydGltZT1NdDcyTHFaaDJVZw">here</a>
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-12">
+        <div class="main_title text-left">
+          <h2>GII Vietnam</h2>
+          <p>
+            Downloading Data - Vietnam The majority of the data used to create the GII for Vietnam, came directly from the General Statistics Office (GSO) of Vietnam. Access to the GSO statistical data can be found at the following url:
+          </p>
+          <a href="https://www.gso.gov.vn/default_en.aspx?tabid=774">https://www.gso.gov.vn/default_en.aspx?tabid=774</a>
+          <p>
+            Data was directly downloaded from the GSO website to an excel spreadsheet - where variables were sorted by region and province. Additional data was provided by the 2014 Vietnam Multiple Indicator Cluster Survey.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--================ End=================-->
+
+
+<section class="portfolio_area" id="portfolio">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-md-6 main-content">
+        <div class="row">
+          <div class="col-lg-12 col-md-6">
+            <div class="feature-articles-title">
+              <h2>REFERENCES/DOCUMENTS</h2>
+              <hr>
+            </div>
+            <div class="row">
+              <div class="col-lg-4 col-md-6 text-center">
+                <div class="feature-box">
+                  <div class="feature-img" style="background-image:url('/static/images/GEM-logo.png'); background-position: top; background-repeat: no-repeat;  background-size: contain;">
+                  </div>
+                  <a href="https://www.canva.com/design/DAEoRaECPws/XX4vV_SSeLw9rYuAPLS5lQ/view?website#2:main-features" target="_blank">How to use</a>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6 text-center">
+                <div class="feature-box">
+                  <div class="feature-img" style="background-image:url('https://dhsprogram.com/images/logo/DHS_logo.svg'); background-position: top; background-repeat: no-repeat;">
+                  </div>
+                  <a href="https://dhsprogram.com/data/dataset/Cambodia_Standard-DHS_2014.cfm?flag=0" target="_blank" style="cursor: pointer;">Cambodia: Standard DHS, 2014</a>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6 text-center">
+                <div class="feature-box">
+                  <div class="feature-img" style="background-image:url('http://hdr.undp.org/sites/all/themes/hdr_theme/logo.png'); background-position: top; background-repeat: no-repeat;">
+                  </div>
+                  <a href="http://hdr.undp.org/en/content/gender-inequality-index-gii" target="_blank">Gender Inequality Index (GII)</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+</div>
+
+
+
+
+{% endblock %}

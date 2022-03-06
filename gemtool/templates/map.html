@@ -1,0 +1,452 @@
+
+{% extends "base.html" %}
+{% load static i18n %}
+{% block title %} GEM {% endblock %}
+
+{% block content %}
+
+<div ng-controller="mapcontroller">
+  <div ng-show="showSpinner">
+    <div class="overlay"></div>
+    <div class="spinner"></div>
+  </div>
+
+  <div id="guiding-modal" class="modal hide">
+  <div class="modal-container">
+    <div class="modal-background"></div>
+    <div class="modal-window">
+      <div class="modal-wrapper custom-scroll">
+        <button type="button" class="close" data-dismiss="model" name="button">×</button>
+        <div class="area-modal-title">
+          [[ 'WELCOME TO THE GENDER EQUALITY MONITORING' | translate ]]
+        </div>
+        <br>
+        <div class="disclaimer-content">
+          <p>[[ 'GET STARTED WITH FOUR EASY STEPS' | translate ]]</p>
+          <div class="row text-center" style="font-size: 12px">
+            <div class="col-6">
+              <div class="row">
+                <div class="col-12">
+                  <img src="/static/images/icons/step1.png" alt="" width="70%">
+                </div>
+                <div class="col-12">
+                  [[ 'Step 1' | translate ]]
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="row">
+                <div class="col-12">
+                  <img src="/static/images/icons/step2.png" alt="" width="70%">
+                </div>
+                <div class="col-12">
+                  [[ 'Step 2' | translate ]]
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="row">
+                <div class="col-12">
+                  <img src="/static/images/icons/step3.png" alt="" width="70%">
+                </div>
+                <div class="col-12">
+                  [[ 'Step 3' | translate ]]
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="row">
+                <div class="col-12">
+                <img src="/static/images/icons/step4.png" alt="" width="70%">
+                </div>
+                <div class="col-12">
+                  [[ 'Step 4' | translate ]]
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+          <br>
+          [[ 'You can click on country boundaries on the interactive map to show a Gender Inequality Index (GII), the information will be shown on the right hand side.' | translate ]]
+          <br>
+          <br>
+          <a href="https://www.canva.com/design/DAEoRaECPws/XX4vV_SSeLw9rYuAPLS5lQ/view?website#2:main-features" target="_blank">[[ 'READ OUR TOOL GUIDELINES TO DISCOVER MORE…' | translate ]]</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <!--================ Start Home Banner Area =================-->
+  <section class="portfolio_area" id="portfolio" style="background: linear-gradient( 120deg ,#2A3783 0%,#1B949F 100%);padding-bottom: 0;">
+    <div id="nav-menu" class="container">
+      <ul  class="nav nav-pills">
+        <li><a  href="/" class="tip">[[ 'HOME' | translate ]]<span>Home page: Introduction</span></a></li>
+        <li><a  href="/about/" class="tip">[[ 'ABOUT' | translate ]]<span>About our project and team members</span></a></li>
+        <li class="active"><a  href="/map/" class="tip">[[ 'GENDER INEQUALITY INDEX' | translate ]]<span>GII interactive map</span></a></li>
+        <li><a href="/map-dataset/" class="tip">[[ 'SECTORAL GENDER GAPS' | translate ]]<span>Dataset page: Original gender dataset interactive map</span></a></li>
+        <li class="nav-item submenu dropdown" style="padding: 0;">
+          <a href="#" class="nav-link dropdown-toggle tip" data-toggle="dropdown" role="button" aria-haspopup="true"
+          aria-expanded="false" style="padding: 5px 20px;">[[ 'DOWNLOAD' | translate ]]<span>Download GII data and original gender dataset</span></a>
+          <ul class="dropdown-menu">
+            <li class="nav-item" style="padding-right: 5px; padding-left: 5px;  padding-top: 5px; padding-bottom: 5px; font-size: 12px;"><a href="/download-data/" class="nav-link" style="color: #000; padding: 5px 5px;">  [[ 'GENDER INEQUALITY INDEX' | translate ]]</a></li>
+            <li class="nav-item" style="padding-right: 5px; padding-left: 5px;  padding-top: 5px; padding-bottom: 5px; font-size: 12px;"><a href="/download-dataset/" class="nav-link" style="color: #000; padding: 5px 5px;">  [[ 'SECTORAL DISAGGREGATED DATA' | translate ]]</a></li>
+          </ul>
+        </li>
+        <li class="nav-item submenu dropdown" style="padding: 0;">
+          <a href="#" class="nav-link dropdown-toggle tip" data-toggle="dropdown" role="button" aria-haspopup="true"
+          aria-expanded="false" style="padding: 5px 20px;">[[ 'REFERENCES' | translate ]]<span>Reference and user guides</span></a>
+          <ul class="dropdown-menu">
+            <li class="nav-item" style="padding-right: 5px; padding-left: 5px;  padding-top: 5px; padding-bottom: 5px; font-size: 12px;"><a href="/reference/" class="nav-link" style="color: #000; padding: 5px 5px;">  [[ 'METHODOLOGY' | translate ]]</a></li>
+            <li class="nav-item" style="padding-right: 5px; padding-left: 5px;  padding-top: 5px; padding-bottom: 5px; font-size: 12px;"><a href="https://www.canva.com/design/DAEoRaECPws/XX4vV_SSeLw9rYuAPLS5lQ/view?website#2:main-features" target="_blank" class="nav-link" style="color: #000; padding: 5px 5px;">  [[ 'USER GUIDE' | translate ]]</a></li>
+            <li class="nav-item" style="padding-right: 5px; padding-left: 5px;  padding-top: 5px; padding-bottom: 5px; font-size: 12px;"><a href="https://docs.google.com/document/d/e/2PACX-1vRdKi-LWf1c0blcVTbo05YPprCn8pLOkrLSJb8JOQHaZusgZ07TN_0LbhxjvS2N4AHETZWjuFOQnMnI/pub" target="_blank" class="nav-link" style="color: #000; padding: 5px 5px;">  [[ 'DATA SOURCES' | translate ]]</a></li>
+          </ul>
+        </li>
+
+      </ul>
+
+    </div>
+  </section>
+  <!--================ End Home Banner Area =================-->
+  <section class="portfolio_area " id="portfolio">
+
+    <div class="container">
+
+      <div class="row">
+        <div  class="col-lg-6">
+          <div class="col-lg-12" style="margin-bottom: 30px;">
+            <div class="row">
+              <div class="col-lg-5">
+                <div class="section_title">
+                  <div class="section_title_text"> [[ 'Administrative boundary' | translate ]] </div>
+                </div>
+                
+                <lable>[[ 'Country' | translate ]]</lable>
+                <div class="tooltip">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#dee2e6" class="bi bi-info-square-fill" viewBox="0 0 16 16">
+                    <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm8.93 4.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM8 5.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+                  </svg>
+                  <span class="tooltiptext">[[ 'Select a country you want to focus or select an option ALL, map will show five countries in Lower Mekong region' | translate ]]</span>
+                </div>
+                <select id="adm0_dropdown" class="form-select" aria-label="select country">
+                  <option value="9999" selected>All</option>
+                </select>
+
+                <br>
+                <div id="province-dropdown" style="display: block;">
+                  <lable>[[ 'Province' | translate ]]</lable>
+                  <div class="tooltip">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#dee2e6" class="bi bi-info-square-fill" viewBox="0 0 16 16">
+                      <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm8.93 4.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM8 5.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+                    </svg>
+                    <span class="tooltiptext">[[ 'Select a province you want to focus or select an option ALL to show all provinces in the selected country' | translate ]]</span>
+                  </div>
+                  <select id="adm1_dropdown" class="form-select" aria-label="select province or state" ></select>
+                </div>
+              </div>
+
+
+              <div class="col-lg-7">
+                <div class="section_title">
+                  <div class="section_title_text"> [[ 'Gender Inequality Index' | translate ]] </div>
+                </div>
+                <button id="guiding-button" style="margin-top: 5px;background: none; border: none; font-size:12px; color: #2A3783 ; cursor:pointer; padding:0; ">[[ 'Click here for a quick guide' | translate ]]</button>
+                <br>
+               <!-- <lable>Gender Inquality Index</lable> -->
+               <button class="btn-show-gii" id="btn-show-gii">[[ 'Show Gender Inequality Index' | translate ]]</button>
+   
+              <lable>[[ 'GII dimension' | translate ]]</lable>
+              <div class="tooltip">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#dee2e6" class="bi bi-info-square-fill" viewBox="0 0 16 16">
+                  <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm8.93 4.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM8 5.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+                </svg>
+                <span class="tooltiptext">[[ 'Select a gender dimension or Gender Inequality Index (GII)' | translate ]]</span>
+              </div>
+              <select id="gii_dimension_dropdown" class="form-select" aria-label="Default select example">
+                <option value="gii" hidden>None</option>
+                <!-- <option value="none">None</option> -->
+              </select>
+          
+
+              <div style="display:none;">
+                <lable>[[ 'Indicators' | translate ]]</lable>
+              <div class="tooltip">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#dee2e6" class="bi bi-info-square-fill" viewBox="0 0 16 16">
+                  <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm8.93 4.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM8 5.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+                </svg>
+                <span class="tooltiptext">Select a gender indicator</span>
+              </div>
+              <select id="gii_indicators_dropdown" class="form-select" aria-label="Default select example">
+                <option value="9999" selected>None</option>
+              </select>
+              </div>
+              
+
+            </div>
+
+          </div>
+
+          
+        </div>
+
+
+        <div class="row">
+          <div class="col-lg-12 align-items-center" style="text-align-last: center;">
+            <ul  class="switchbutton" style="list-style: none;padding-inline-start: 0px; cursor: pointer;float: left;">
+              <li class="active" id="data_level_country">[[ 'BY COUNTRY' | translate ]]</li>
+              <li id="data_level_province">[[ 'BY PROVINCE' | translate ]]</li>
+              <li id="reset_map">[[ 'RESET MAP' | translate ]]</li>
+            </ul>
+
+            <ul id="by_gender" class="switchbutton" style="list-style: none;padding-inline-start: 0px; cursor: pointer;float: right;">
+              <li id="by_gender_index" class="li-disabled" hidden>[[ 'INDEX' | translate ]]</li>
+              <li id="by_gender_ratio" class="li-disabled" hidden>[[ 'RATIO' | translate ]]</li>
+              <li id="by_gender_female" class="li-disabled">[[ 'FEMALE' | translate ]]</li>
+              <li id="by_gender_male" class="li-disabled">[[ 'MALE' | translate ]]</li>
+            </ul>
+          </div>
+
+          <div id="my_range" class="col-lg-12 align-items-center">
+            <!-- <p style="font-size:10px; color: #a9b3bd; font-style: italic;">Safari is not Supported. We recommend the Firefox, Chrome, or Internet Explorer</p> -->
+            <input type="text" class="js-range-slider" name="my_range" value="" />
+        
+          </div>
+        </div>
+        <div class="row" style="margin-top: 10px;">
+          <div class="col-lg-12 text-center">
+            <div id="map" style="width:100%; height:600px;"></div>
+            <div class="map-overlay" id="features">
+              <h4 id="dataset_name" style="font-size: 14px; font-weight: 400; color: #343a40;"></h4>
+            </div>
+            <div class="map-overlay" id="legend"></div>
+          </div>
+          <div class="col-lg-12 align-items-center">
+            <div style="margin-top: 10px; padding: 10px; background: #e9ecef;">
+              <b>[[ 'Data Description' | translate ]]</b>
+              <p id="dataset_definition"></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <section class="about_area section_gap_bottom">
+            <div class="container-fluid">
+              <div class="row justify-content-start align-items-center">
+                <div class="col-lg-12">
+                  <div class="main_title text-left">
+                    <div class="section_title">
+                      <div class="section_title_text"> [[ 'About Data' | translate ]]: </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <b>Disclaimer</b>
+                        <p>The information provided on this website is not official U.S. Government information and does not represent the views or positions of the U.S. Agency for International Development or the U.S. Government.</p>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+
+
+      <!-- CHART AREA-->
+      <div class="col-lg-6">
+
+    <div class="col-lg-12">
+      <div class="row">
+      <section class="about_area" ng-show="giiDetail">
+        <div class="container-fluid">
+          <div class="row justify-content-start align-items-center">
+            <div class="col-lg-12">
+              <div class="main_title text-left">
+                <div class="section_title">
+                  <div class="section_title_text"> [['Gender Inequality Index' | translate ]] </div>
+                </div>
+                <div class="row justify-content-start">
+
+                  <div class="col-lg-12">
+                    <!-- <h4>What does the GII measure and how is it calculated?</h4> -->
+                    <p>Gender Inequality Index (GII), introduced by UNDP in 2010,  quantifies inequality between women and men in three dimensions of human development: reproductive health, empowerment, and labor. In which, reproductive health is measured by maternal mortality ratio and adolescent birth rates; empowerment is measured by gender ratio in parliamentary seats, and in secondary education; labor is measured by labor force participation rate of female and male populations aged 15 years and older).</p>
+                    <p>The index ranges from 0 (for gender equality) to 1 (gender inequality).</p>
+                    <p>While national GII is based on the original GII created by UNDP, at sub-national level, the datasets for the calculation of GII are slightly varies between the countries due to the unavailability of data. For more details of GII calculation at national and sub-national level, go to  <a href="#"> “Technical Notes” </a>.</p>
+                    <p style="font-style: italic; color: #d63b84;">You can click on country boundaries on the interactive map to show the graph compares gender inequality or gender dimension index, the graph will be shown below.</p>
+                  </div>
+
+                  <div class="col-lg-12" ng-show="showDIVChartDesc">
+                    <p style="font-size:18px;"><b id="selected_country_name"></b></p>
+                    <b id="selected_dimension_name"></b>
+                    <p id="chart-desc"></p>
+                    <p id="chart-desc2"></p>
+                  </div>
+
+
+                  <div class="col-lg-12" ng-show="showGIICharts">
+                    
+
+                    <div id="col-chart-container"></div>
+                    <!-- <div id="bar-chart-container"></div> -->
+                    <br>
+
+                    <div ng-show="showLineChart">
+                      <div class="input-daterange input-group" id="datepicker" style="width: 60%">
+                        <span class="input-group-addon input-yearselect-text">[['FROM' | translate ]]</span>
+                        <input type="text" class="input-sm form-control input-yearselect" id="start" value="2010"/>
+                        <span class="input-group-addon input-yearselect-text">[['TO' | translate ]]</span>
+                        <input type="text" class="input-sm form-control input-yearselect" id="end" value="2021" />
+                      </div>
+                      <div id="line-chart-container"></div>
+                      <br>
+                      <div class="col-12" ng-show="showGIISpider">
+                        <div class="row">
+                          <p id="chart-gii-spider-desc">These graphs illustrate the difference between women and men in the aspect of access to reproductive healthcare, participation in labor market and empowerment. The higher value indicates the better access or participation to public services, employment and political arena.</p>
+                          <div class="">
+                            <div id="spider-male-container"></div>
+                          </div>
+                          <div class="">
+                            <div id="spider-female-container"></div>
+                          </div>
+
+                        </div>
+                      </div>
+                      
+                      
+                    </div>
+                    <br>
+                    <div id="div-dimension-chart" ng-show="showDivDimensionChart">
+                      <div class="col-lg-12 align-items-center" style="text-align-last: center;">
+                        <ul  class="switchbutton" style="list-style: none;padding-inline-start: 0px; cursor: pointer;float: left;">
+                          <li class="active" id="dimension_spiderweb_chart">SPIDERWEB CHART</li>
+                          <li id="dimension_bar_chart">BAR CHART</li>
+                        </ul>
+                      </div>
+                      <br>
+                      <br>
+                      <br>
+                      <div id="spider-chart-container"></div>
+                      <div id="bar-chart-container" style="display: none;"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="about_area" id="gii_text_detial" ng-show="giiTextDetail">
+        <div class="container-fluid">
+          <div class="row justify-content-start align-items-center">
+            <div class="col-lg-12"  ng-repeat="data in giiData">
+              <div class="main_title text-left">
+                <div class="section_title">
+                  <div class="section_title_text"> [[data.area_name]] </div>
+                </div>
+
+                <div class="row justify-content-start">
+
+                  <div class="col-lg-6" ng-repeat="dg in data.dimensionGroup">
+                    <div  class="col-lg-12" ng-if="dg.no%2 !== 0" style="background: #f8f9fa;">
+                      <div class="main_title text-left">
+                        <h4>[[dg.desc]]</h4>
+
+                        <div ng-repeat="dd in data.dimensionData">
+                          <div class="row" ng-if="dd.common_id == dg.id">
+                            <div class="col-lg-12" style="text-transform: uppercase;">
+                              [[dd.data]]
+                              <div class="progress" ng-if="dd.data == 'female'">
+                                <div id="dimension[[dg.common_id]]_[[dd.data]]" class="progress-bar" role="progressbar" aria-valuenow="[[dd.value]]" aria-valuemin="0" aria-valuemax="1" style="width:[[dd.percent]]%; background-color: #ae1857;">[[dd.value]]</div>
+                              </div>
+                              <div class="progress" ng-if="dd.data == 'male'">
+                                <div id="dimension[[dg.common_id]]_[[dd.data]]" class="progress-bar" role="progressbar" aria-valuenow="[[dd.value]]" aria-valuemin="0" aria-valuemax="1" style="width:[[dd.percent]]%; background-color: #024E72;">[[dd.value]]</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <hr>
+
+                        <!-- <div ng-repeat="ing in data.indicatorGroup" style="display:none;">
+                          <div ng-if="ing.common_id == dg.id">
+                            <lable>[[ing.indicator]]</lable>
+                            <div class="row" ng-repeat="ind in data.indicatorData">
+                              <div class="col-lg-12">
+                                <div ng-if="ing.indicator == ind.indicator_desc && ind.data == 'female'" class="col-lg-12" style="color:#ae1857;text-transform: uppercase;font-size: 14px;">[[ind.data]]: <span id="">[[ind.value]]</span></div>
+                                <div ng-if="ing.indicator == ind.indicator_desc && ind.data == 'male'" class="col-lg-12" style="color:#024E72;text-transform: uppercase;font-size: 14px;">[[ind.data]]: <span id="">[[ind.value]]</span></div>
+                                <div ng-if="ing.indicator == ind.indicator_desc && ind.data == 'ratio'" class="col-lg-12" style="color:#ae1857;text-transform: uppercase;font-size: 14px;">[[ind.data]]: <span id="">[[ind.value]]</span></div>
+                              </div>
+
+                            </div>
+                            <br>
+                          </div>
+
+                        </div> -->
+
+                      </div>
+                    </div>
+
+                    <div class="col-lg-12" ng-if="dg.no%2 == 0" style="background: #FFF;">
+                      <div class="main_title text-left">
+                        <h4>[[dg.desc]]</h4>
+
+                        <div ng-repeat="dd in data.dimensionData">
+                          <div class="row" ng-if="dd.common_id == dg.id">
+                            <div class="col-lg-12" style="text-transform: uppercase;">
+                              [[dd.data]]
+                              <div class="progress" ng-if="dd.data == 'female'">
+                                <div id="dimension[[dg.common_id]]_[[dd.data]]" class="progress-bar" role="progressbar" aria-valuenow="[[dd.value]]" aria-valuemin="0" aria-valuemax="1" style="width:[[dd.percent]]%; background-color: #ae1857;">[[dd.value]]</div>
+                              </div>
+                              <div class="progress" ng-if="dd.data == 'male'">
+                                <div id="dimension[[dg.common_id]]_[[dd.data]]" class="progress-bar" role="progressbar" aria-valuenow="[[dd.value]]" aria-valuemin="0" aria-valuemax="1" style="width:[[dd.percent]]%; background-color: #024E72;">[[dd.value]]</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <hr>
+
+                        <!-- <div ng-repeat="ing in data.indicatorGroup" style="display:none;">
+                          <div ng-if="ing.common_id == dg.id">
+                            <lable>[[ing.indicator]]</lable>
+                            <div class="row" ng-repeat="ind in indicatorData">
+                              <div class="col-lg-12">
+                                <div ng-if="ing.indicator == ind.indicator_desc && ind.data == 'female'" class="col-lg-12" style="color:#ae1857;text-transform: uppercase;font-size: 14px;">[[ind.data]]: <span id="">[[ind.value]]</span></div>
+                                <div ng-if="ing.indicator == ind.indicator_desc && ind.data == 'male'" class="col-lg-12" style="color:#024E72;text-transform: uppercase;font-size: 14px;">[[ind.data]]: <span id="">[[ind.value]]</span></div>
+                                <div ng-if="ing.indicator == ind.indicator_desc && ind.data == 'ratio'" class="col-lg-12" style="color:#ae1857;text-transform: uppercase;font-size: 14px;">[[ind.data]]: <span id="">[[ind.value]]</span></div>
+                              </div>
+                            </div>
+                            <br>
+                          </div>
+                        </div> -->
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <br>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+    </div>
+    </div>
+
+
+  </div>
+</section>
+
+
+
+</div>
+
+
+
+{% endblock %}
