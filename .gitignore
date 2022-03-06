@@ -5,7 +5,7 @@
 
 static/*
 # Setting and config files
-#gemtool/settings.py
+gemtool/settings.py
 
 
 # Unused templates
@@ -13,9 +13,8 @@ static/*
 
 # Vendor files
 # ======================
-#air-quality-explorer/static/vendor/*
+gemtool/static/vendor/*
 
-gemtool/setting.py 
 # Exception to the rule
 !gemtool/static/dist/README.md
 
