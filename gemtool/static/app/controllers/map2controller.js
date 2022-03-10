@@ -179,66 +179,104 @@ angular.module('baseApp')
 	};
 
 	$scope.genMapLegend = function(data_unit) {
-		if(CLASS_1 === CLASS_4){
-			legend_label = [
-				'' + CLASS_4.toString(),
-				'No Data',
-			];
+		// if(CLASS_1 === CLASS_4){
+		// 	legend_label = [
+		// 		'' + CLASS_4.toString(),
+		// 		'No Data',
+		// 	];
 
-			if(by_gender === 'male'){
-				legend_colors = [
-					'#024E72',
-					'#B9B9B9',
-				];
-			}else if(by_gender === 'female'){
-				legend_colors = [
-					'#AE1857',
-					'#B9B9B9',
-				];
-			}else{
-				legend_colors = [
-					'#52006A',
-					'#B9B9B9',
-				];
-			}
+		// 	if(by_gender === 'male'){
+		// 		legend_colors = [
+		// 			'#024E72',
+		// 			'#B9B9B9',
+		// 		];
+		// 	}else if(by_gender === 'female'){
+		// 		legend_colors = [
+		// 			'#AE1857',
+		// 			'#B9B9B9',
+		// 		];
+		// 	}else{
+		// 		legend_colors = [
+		// 			'#52006A',
+		// 			'#B9B9B9',
+		// 		];
+		// 	}
+		// }else{
+		// 	legend_label = [
+		// 		'< '+ CLASS_1.toString(),
+		// 		CLASS_1.toString() + ' - '+ CLASS_2.toString(),
+		// 		CLASS_2.toString() + ' - '+ CLASS_3.toString(),
+		// 		CLASS_3.toString() + ' - '+ CLASS_4.toString(),
+		// 		'> ' + CLASS_4.toString(),
+		// 		'No Data',
+		// 	];
+
+		// 	if(by_gender === 'male'){
+		// 		legend_colors = [
+		// 			'#FFFFCD',
+		// 			'#8ADCE8',
+		// 			'#2EC4DA',
+		// 			'#0D899E',
+		// 			'#024E72',
+		// 			'#B9B9B9',
+		// 		];
+		// 	}else if(by_gender === 'female'){
+		// 		legend_colors = [
+		// 			'#FFFFCD',
+		// 			'#EFBCBC',
+		// 			'#E26B9B',
+		// 			'#D71E6C',
+		// 			'#AE1857',
+		// 			'#B9B9B9',
+		// 		];
+		// 	}else{
+		// 		legend_colors = [
+		// 			'#FFFFCD',
+		// 			'#C6B4CE',
+		// 			'#9B72AA',
+		// 			'#A03C78',
+		// 			'#52006A',
+		// 			'#B9B9B9',
+		// 		];
+		// 	}
+		// }
+		
+		legend_label = [
+			'< '+ CLASS_1.toString(),
+			CLASS_1.toString() + ' - '+ CLASS_2.toString(),
+			CLASS_2.toString() + ' - '+ CLASS_3.toString(),
+			CLASS_3.toString() + ' - '+ CLASS_4.toString(),
+			'> ' + CLASS_4.toString(),
+			'No Data',
+		];
+
+		if(by_gender === 'male'){
+			legend_colors = [
+				'#FFFFCD',
+				'#8ADCE8',
+				'#2EC4DA',
+				'#0D899E',
+				'#024E72',
+				'#B9B9B9',
+			];
+		}else if(by_gender === 'female'){
+			legend_colors = [
+				'#FFFFCD',
+				'#EFBCBC',
+				'#E26B9B',
+				'#D71E6C',
+				'#AE1857',
+				'#B9B9B9',
+			];
 		}else{
-			legend_label = [
-				'< '+ CLASS_1.toString(),
-				CLASS_1.toString() + ' - '+ CLASS_2.toString(),
-				CLASS_2.toString() + ' - '+ CLASS_3.toString(),
-				CLASS_3.toString() + ' - '+ CLASS_4.toString(),
-				'> ' + CLASS_4.toString(),
-				'No Data',
+			legend_colors = [
+				'#FFFFCD',
+				'#C6B4CE',
+				'#9B72AA',
+				'#A03C78',
+				'#52006A',
+				'#B9B9B9',
 			];
-
-			if(by_gender === 'male'){
-				legend_colors = [
-					'#FFFFCD',
-					'#8ADCE8',
-					'#2EC4DA',
-					'#0D899E',
-					'#024E72',
-					'#B9B9B9',
-				];
-			}else if(by_gender === 'female'){
-				legend_colors = [
-					'#FFFFCD',
-					'#EFBCBC',
-					'#E26B9B',
-					'#D71E6C',
-					'#AE1857',
-					'#B9B9B9',
-				];
-			}else{
-				legend_colors = [
-					'#FFFFCD',
-					'#C6B4CE',
-					'#9B72AA',
-					'#A03C78',
-					'#52006A',
-					'#B9B9B9',
-				];
-			}
 		}
 
 		$("#legend").html("");
@@ -592,7 +630,24 @@ angular.module('baseApp')
 						name: selected_data_text,
 						data: indicator_data
 
-					}]
+					}],
+					exporting: {
+						buttons: {
+						  contextButton: {
+							menuItems: ["printChart",
+										"separator",
+										"downloadPNG",
+										"downloadJPEG",
+										"downloadPDF",
+										"downloadSVG",
+										"separator",
+										"downloadCSV",
+										"downloadXLS",
+										//"viewData",
+									]
+						  }
+						}
+					  },
 				});
 
 
@@ -754,6 +809,7 @@ angular.module('baseApp')
 			if(f_features.length === 0){
 				$("#dataset_name").text("Sorry, we can not calculate a gender gap of this dataset!");
 				$("#detail_div").css("display", "none");
+				$("#dataset_definition").text("");
 			}else{
 				var polygon ='';
 				if(f_features.length === 1){
@@ -789,6 +845,7 @@ angular.module('baseApp')
 					if(m_features.length === 0){
 						$("#dataset_name").text("Sorry, we can not calculate a gender gap of this dataset!");
 						$("#detail_div").css("display", "none");
+						$("#dataset_definition").text("");
 					}else{
 						var polygon ='';
 						if(m_features.length === 1){
@@ -895,6 +952,9 @@ angular.module('baseApp')
 							$scope.layerClasses(gender_gap_map.features, data_key, data_unit);
 							//update a map legend
 							$scope.genMapLegend(data_unit);
+
+							$("#dataset_name").text(selected_data_text);
+							$("#dataset_definition").text(selected_data_text);
 
 							Highcharts.chart('bar-chart-container', {
 								chart: {
@@ -1073,6 +1133,7 @@ angular.module('baseApp')
 						}else{
 							$("#dataset_name").text("Sorry, we can not calculate a gender gap of this dataset!");
 							$("#detail_div").css("display", "none");
+							$("#dataset_definition").text("");
 						}
 					}
 					$scope.showSpinner = false;

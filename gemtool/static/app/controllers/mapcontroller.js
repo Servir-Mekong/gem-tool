@@ -327,46 +327,64 @@ angular.module('baseApp')
 				'index': ['#EFEDF5', '#BCBDDC', '#807DBA', '#6A51A3', '#390967'],
 			}
 		};
-		if(CLASS_1 === CLASS_4){
-			legend_label = [
-				'' + CLASS_4.toString(),
-				'No Data',
-			];
+		// if(CLASS_1 === CLASS_4){
+		// 	legend_label = [
+		// 		'' + CLASS_4.toString(),
+		// 		'No Data',
+		// 	];
 
-			if(by_gender === 'male'){
-				legend_colors = [
-					'#024E72',
-					'#B9B9B9',
-				];
-			}else if(by_gender === 'female'){
-				legend_colors = [
-					'#AE1857',
-					'#B9B9B9',
-				];
-			}else{
-				legend_colors = [
-					'#52006A',
-					'#B9B9B9',
-				];
-			}
+		// 	if(by_gender === 'male'){
+		// 		legend_colors = [
+		// 			'#024E72',
+		// 			'#B9B9B9',
+		// 		];
+		// 	}else if(by_gender === 'female'){
+		// 		legend_colors = [
+		// 			'#AE1857',
+		// 			'#B9B9B9',
+		// 		];
+		// 	}else{
+		// 		legend_colors = [
+		// 			'#52006A',
+		// 			'#B9B9B9',
+		// 		];
+		// 	}
+		// }else{
+		// 	legend_label = [
+		// 		'< '+ CLASS_1.toString(),
+		// 		CLASS_1.toString() + ' - '+ CLASS_2.toString(),
+		// 		CLASS_2.toString() + ' - '+ CLASS_3.toString(),
+		// 		CLASS_3.toString() + ' - '+ CLASS_4.toString(),
+		// 		'> ' + CLASS_4.toString(),
+		// 		'No Data',
+		// 	];
+
+		// 	if(by_gender === 'male'){
+		// 		legend_colors = mapcolor[class_no]["male"];
+		// 	}else if(by_gender === 'female'){
+		// 		legend_colors = mapcolor[class_no]["female"];
+		// 	}else{
+		// 		legend_colors = mapcolor[class_no]["none"].reverse();
+		// 	}
+		// }
+
+		legend_label = [
+			'< '+ CLASS_1.toString(),
+			CLASS_1.toString() + ' - '+ CLASS_2.toString(),
+			CLASS_2.toString() + ' - '+ CLASS_3.toString(),
+			CLASS_3.toString() + ' - '+ CLASS_4.toString(),
+			'> ' + CLASS_4.toString(),
+			'No Data',
+		];
+
+		if(by_gender === 'male'){
+			legend_colors = mapcolor[class_no]["male"];
+		}else if(by_gender === 'female'){
+			legend_colors = mapcolor[class_no]["female"];
 		}else{
-			legend_label = [
-				'< '+ CLASS_1.toString(),
-				CLASS_1.toString() + ' - '+ CLASS_2.toString(),
-				CLASS_2.toString() + ' - '+ CLASS_3.toString(),
-				CLASS_3.toString() + ' - '+ CLASS_4.toString(),
-				'> ' + CLASS_4.toString(),
-				'No Data',
-			];
-
-			if(by_gender === 'male'){
-				legend_colors = mapcolor[class_no]["male"];
-			}else if(by_gender === 'female'){
-				legend_colors = mapcolor[class_no]["female"];
-			}else{
-				legend_colors = mapcolor[class_no]["none"].reverse();
-			}
+			legend_colors = mapcolor[class_no]["none"].reverse();
 		}
+
 
 		$("#legend").html("");
 
@@ -715,7 +733,7 @@ angular.module('baseApp')
 				}
 			},
 			title: {
-				text: title,
+				text: title.toUpperCase(),
 				style: {
 					fontSize: 12
 				}
@@ -745,7 +763,25 @@ angular.module('baseApp')
 				headerFormat: '<span style="font-size:11px">'+title+'</span><br>',
 				pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}<br/>'
 			},
-			series: series
+			series: series,
+			exporting: {
+				buttons: {
+				  contextButton: {
+					menuItems: ["printChart",
+								"separator",
+								"downloadPNG",
+								"downloadJPEG",
+								"downloadPDF",
+								"downloadSVG",
+								"separator",
+								"downloadCSV",
+								"downloadXLS",
+								//"viewData",
+							]
+				  }
+				}
+			  },
+
 		});
 	};
 
@@ -761,7 +797,7 @@ angular.module('baseApp')
 				enabled: false
 			},
 			title: {
-				text: title,
+				text: title.toUpperCase(),
 				style: {
 					fontSize: 12
 				}
@@ -793,6 +829,23 @@ angular.module('baseApp')
 				}
 			},
 			series: series,
+			exporting: {
+				buttons: {
+				  contextButton: {
+					menuItems: ["printChart",
+								"separator",
+								"downloadPNG",
+								"downloadJPEG",
+								"downloadPDF",
+								"downloadSVG",
+								"separator",
+								"downloadCSV",
+								"downloadXLS",
+								//"viewData",
+							]
+				  }
+				}
+			  },
 			responsive: {
 				rules: [{
 					condition: {
@@ -819,7 +872,7 @@ angular.module('baseApp')
 				}
 			},
 			title: {
-				text: title,
+				text: title.toUpperCase(),
 				style: {
 					fontSize: 12
 				}
@@ -854,7 +907,24 @@ angular.module('baseApp')
 					borderWidth: 0
 				}
 			},
-			series: series
+			series: series,
+			exporting: {
+				buttons: {
+				  contextButton: {
+					menuItems: ["printChart",
+								"separator",
+								"downloadPNG",
+								"downloadJPEG",
+								"downloadPDF",
+								"downloadSVG",
+								"separator",
+								"downloadCSV",
+								"downloadXLS",
+								//"viewData",
+							]
+				  }
+				}
+			  },
 		});
 	};
 
@@ -871,7 +941,7 @@ angular.module('baseApp')
 				enabled: false
 			},
 			title: {
-				text: title,
+				text: title.toUpperCase(),
 				x: -40,
 				style: {
 					fontSize: 12
@@ -916,6 +986,23 @@ angular.module('baseApp')
 				layout: 'vertical'
 			},
 			series: series,
+			exporting: {
+				buttons: {
+				  contextButton: {
+					menuItems: ["printChart",
+								"separator",
+								"downloadPNG",
+								"downloadJPEG",
+								"downloadPDF",
+								"downloadSVG",
+								"separator",
+								"downloadCSV",
+								"downloadXLS",
+								//"viewData",
+							]
+				  }
+				}
+			  },
 			responsive: {
 				rules: [{
 					condition: {
@@ -1000,6 +1087,7 @@ angular.module('baseApp')
 			admin_level: admin_level,
 			year: year
 		};
+
 		var new_item_f = {
 			name: _map_clicked_name,
 			data: [null , null , null],
@@ -1785,13 +1873,37 @@ angular.module('baseApp')
 			$scope.getLineChartData();
 			$scope.giiDetail= true;
 			$scope.showLineChart= true;
+			$scope.showGIISpider=true;
 			$scope.giiTextDetail = true;
 			$("#gii_text_detial").css("display", "block");
-			$scope.getGIISpiderChartData();
+			
+			if(selected_features.includes(_map_clicked)){
+				$scope.getGIISpiderChartData();
+			}
+			
+			// Delete any point 
+			var dl_idx=0
+			var _idx=0
+			chart_spider_series_male.forEach((point) => {
+				if (point.name === _map_clicked_name) {
+					dl_idx = _idx;
+					console.log(point.name, _map_clicked_name)
+					
+					chart_spider_series_male.splice(dl_idx,1);
+					chart_spider_series_female.splice(dl_idx,1);
+
+					var chart_categories = ['Empowerment', 'Labour Force', 'Reproductive health'];
+					$scope.genSpiderChart("GII Dimension : Male", year , chart_categories, chart_spider_series_male, 'spider-male-container');
+					$scope.genSpiderChart("GII Dimension : Female", year , chart_categories, chart_spider_series_female, 'spider-female-container');
+				}
+				_idx+=1;
+			});
+
 		}else{
 			$("#gii_text_detial").css("display", "none");
 			$scope.showDivDimensionChart= true;
-			$scope.showLineChart= false;
+			$scope.showLineChart= true;
+			$scope.showGIISpider=false;
 			$scope.getDimensionGraphData();
 			$scope.getDimensionLineChartData();
 		}
