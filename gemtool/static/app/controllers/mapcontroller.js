@@ -1880,14 +1880,13 @@ angular.module('baseApp')
 			if(selected_features.includes(_map_clicked)){
 				$scope.getGIISpiderChartData();
 			}
-			
+
 			// Delete any point 
-			var dl_idx=0
-			var _idx=0
+			var dl_idx=0;
+			var _idx=0;
 			chart_spider_series_male.forEach((point) => {
 				if (point.name === _map_clicked_name) {
 					dl_idx = _idx;
-					console.log(point.name, _map_clicked_name)
 					
 					chart_spider_series_male.splice(dl_idx,1);
 					chart_spider_series_female.splice(dl_idx,1);
