@@ -2220,7 +2220,7 @@ h6 {
   display: inline-block;
   border-bottom: none;
   opacity: 1;
-  z-index: 99;
+  z-index: 1;
 }
 
 .tooltip .tooltiptext {
@@ -2237,7 +2237,7 @@ h6 {
 
   /* Position the tooltip */
   position: absolute;
-  z-index: 1;
+  z-index: 9999;
 }
 
 .tooltip:hover .tooltiptext {
@@ -2336,6 +2336,7 @@ h6 {
   list-style: none;
   text-align: center;
   background-color: #293d85;
+  margin-bottom: 5px;
   color: rgb(255 255 255 / 90%);
   width: auto;
   padding: 0 10px;
@@ -2346,27 +2347,27 @@ h6 {
   display: flex;
 }
 
-a.tip {
+a.tip, li.tip {
   /* border-bottom: 1px dashed; */
   text-decoration: none
 }
-a.tip:hover {
+a.tip:hover, li.tip:hover {
   cursor: pointer;
   position: relative;
 }
-a.tip span {
+a.tip span, li.tip span {
   display: none
 }
-a.tip:hover span {
-  display: none;
+a.tip:hover span, li.tip:hover span {
+  display: block;
   border: #c0c0c0 1px dotted;
-  padding: 5px 20px 5px 5px;
+  padding: 5px 10px 5px 5px;
   z-index: 1000;
   color: #FFF;
   background: #293d85;
   left: 0;
   margin: 12px;
-  width: 350px;
+  width: 200px;
   position: absolute;
   top:20px;
   text-decoration: none
@@ -2447,4 +2448,16 @@ a.tip:hover span {
   background: none !important;
   border-style: solid !important;
   border-color: transparent !important;
+}
+
+dl, ol, ul {
+  margin-top: 0;
+  margin-bottom: 2px;
+}
+
+hr {
+  margin-top: 0;
+  margin-bottom: 30px;
+  border: 0;
+  border-top: 1px dashed rgba(0, 0, 0, .05);
 }

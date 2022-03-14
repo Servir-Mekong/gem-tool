@@ -83,30 +83,28 @@
   <section class="portfolio_area" id="portfolio" style="background: linear-gradient( 120deg ,#2A3783 0%,#1B949F 100%);padding-bottom: 0;">
     <div id="nav-menu" class="container">
       <ul  class="nav nav-pills">
-        <li><a  href="/" class="tip">[[ 'HOME' | translate ]]<span>Home page: Introduction</span></a></li>
-        <li><a  href="/about/" class="tip">[[ 'ABOUT' | translate ]]<span>About our project and team members</span></a></li>
-        <li class="active"><a  href="/map/" class="tip">[[ 'GENDER INEQUALITY INDEX' | translate ]]<span>GII interactive map</span></a></li>
-        <li><a href="/map-dataset/" class="tip">[[ 'SECTORAL GENDER GAPS' | translate ]]<span>Dataset page: Original gender dataset interactive map</span></a></li>
+        <li><a  href="/">[[ 'HOME' | translate ]]</a></li>
+        <li><a  href="/about/">[[ 'ABOUT' | translate ]]</a></li>
+        <li class="active"><a  href="/map/">[[ 'GENDER INEQUALITY INDEX' | translate ]]</a></li>
+        <li><a href="/map-dataset/">[[ 'SECTORAL GENDER GAPS' | translate ]]</a></li>
         <li class="nav-item submenu dropdown" style="padding: 0;">
-          <a href="#" class="nav-link dropdown-toggle tip" data-toggle="dropdown" role="button" aria-haspopup="true"
-          aria-expanded="false" style="padding: 5px 20px;">[[ 'DOWNLOAD' | translate ]]<span>Download GII data and original gender dataset</span></a>
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+          aria-expanded="false" style="padding: 5px 20px;">[[ 'DOWNLOAD' | translate ]]</a>
           <ul class="dropdown-menu">
             <li class="nav-item" style="padding-right: 5px; padding-left: 5px;  padding-top: 5px; padding-bottom: 5px; font-size: 12px;"><a href="/download-data/" class="nav-link" style="color: #000; padding: 5px 5px;">  [[ 'GENDER INEQUALITY INDEX' | translate ]]</a></li>
             <li class="nav-item" style="padding-right: 5px; padding-left: 5px;  padding-top: 5px; padding-bottom: 5px; font-size: 12px;"><a href="/download-dataset/" class="nav-link" style="color: #000; padding: 5px 5px;">  [[ 'SECTORAL DISAGGREGATED DATA' | translate ]]</a></li>
           </ul>
         </li>
         <li class="nav-item submenu dropdown" style="padding: 0;">
-          <a href="#" class="nav-link dropdown-toggle tip" data-toggle="dropdown" role="button" aria-haspopup="true"
-          aria-expanded="false" style="padding: 5px 20px;">[[ 'REFERENCES' | translate ]]<span>Reference and user guides</span></a>
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+          aria-expanded="false" style="padding: 5px 20px;">[[ 'REFERENCES' | translate ]]</a>
           <ul class="dropdown-menu">
             <li class="nav-item" style="padding-right: 5px; padding-left: 5px;  padding-top: 5px; padding-bottom: 5px; font-size: 12px;"><a href="/reference/" class="nav-link" style="color: #000; padding: 5px 5px;">  [[ 'METHODOLOGY' | translate ]]</a></li>
             <li class="nav-item" style="padding-right: 5px; padding-left: 5px;  padding-top: 5px; padding-bottom: 5px; font-size: 12px;"><a href="https://www.canva.com/design/DAEoRaECPws/XX4vV_SSeLw9rYuAPLS5lQ/view?website#2:main-features" target="_blank" class="nav-link" style="color: #000; padding: 5px 5px;">  [[ 'USER GUIDE' | translate ]]</a></li>
             <li class="nav-item" style="padding-right: 5px; padding-left: 5px;  padding-top: 5px; padding-bottom: 5px; font-size: 12px;"><a href="https://docs.google.com/document/d/e/2PACX-1vRdKi-LWf1c0blcVTbo05YPprCn8pLOkrLSJb8JOQHaZusgZ07TN_0LbhxjvS2N4AHETZWjuFOQnMnI/pub" target="_blank" class="nav-link" style="color: #000; padding: 5px 5px;">  [[ 'DATA SOURCES' | translate ]]</a></li>
           </ul>
         </li>
-
       </ul>
-
     </div>
   </section>
   <!--================ End Home Banner Area =================-->
@@ -120,7 +118,7 @@
             <div class="row">
               <div class="col-lg-5">
                 <div class="section_title">
-                  <div class="section_title_text"> [[ 'Administrative boundary' | translate ]] </div>
+                  <div class="section_title_text"> [[ 'Select geographical unit' | translate ]] </div>
                 </div>
                 
                 <lable>[[ 'Country' | translate ]]</lable>
@@ -128,20 +126,20 @@
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#dee2e6" class="bi bi-info-square-fill" viewBox="0 0 16 16">
                     <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm8.93 4.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM8 5.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
                   </svg>
-                  <span class="tooltiptext">[[ 'Select a country you want to focus or select an option ALL, map will show five countries in Lower Mekong region' | translate ]]</span>
+                  <span class="tooltiptext">[[ 'Select the country you want to zoom in the map. If you select ‘All’, the map will show all five countries in the Lower Mekong region' | translate ]]</span>
                 </div>
                 <select id="adm0_dropdown" class="form-select" aria-label="select country">
                   <option value="9999" selected>All</option>
                 </select>
 
                 <br>
-                <div id="province-dropdown" style="display: block;">
+                <div id="province-dropdown" style="display: none;">
                   <lable>[[ 'Province' | translate ]]</lable>
                   <div class="tooltip">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#dee2e6" class="bi bi-info-square-fill" viewBox="0 0 16 16">
                       <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm8.93 4.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM8 5.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
                     </svg>
-                    <span class="tooltiptext">[[ 'Select a province you want to focus or select an option ALL to show all provinces in the selected country' | translate ]]</span>
+                    <span class="tooltiptext">[[ 'To zoom in a specific province, you should select the country first, then select the province here. However, if you want to view multiple provinces, click on ‘BY PROVINCE’ button below, then click on location of those provinces using the map.' | translate ]]</span>
                   </div>
                   <select id="adm1_dropdown" class="form-select" aria-label="select province or state" ></select>
                 </div>
@@ -150,13 +148,12 @@
 
               <div class="col-lg-7">
                 <div class="section_title">
-                  <div class="section_title_text"> [[ 'Gender Inequality Index' | translate ]] </div>
+                  <div class="section_title_text"> [[ 'Select index' | translate ]] </div>
                 </div>
-                <button id="guiding-button" style="margin-top: 5px;background: none; border: none; font-size:12px; color: #2A3783 ; cursor:pointer; padding:0; ">[[ 'Click here for a quick guide' | translate ]]</button>
-                <br>
+                <!-- <br> -->
                <!-- <lable>Gender Inquality Index</lable> -->
-               <button class="btn-show-gii" id="btn-show-gii">[[ 'Show Gender Inequality Index' | translate ]]</button>
-   
+               <!-- <button class="btn-show-gii" id="btn-show-gii">[[ 'Show Gender Inequality Index' | translate ]]</button> -->
+
               <lable>[[ 'GII dimension' | translate ]]</lable>
               <div class="tooltip">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#dee2e6" class="bi bi-info-square-fill" viewBox="0 0 16 16">
@@ -165,7 +162,7 @@
                 <span class="tooltiptext">[[ 'Select a gender dimension or Gender Inequality Index (GII)' | translate ]]</span>
               </div>
               <select id="gii_dimension_dropdown" class="form-select" aria-label="Default select example">
-                <option value="gii" hidden>None</option>
+                <option value="gii" >Gender Inequality Index (GII)</option>
                 <!-- <option value="none">None</option> -->
               </select>
           
@@ -201,10 +198,10 @@
             </ul>
 
             <ul id="by_gender" class="switchbutton" style="list-style: none;padding-inline-start: 0px; cursor: pointer;float: right;">
-              <li id="by_gender_index" class="li-disabled" hidden>[[ 'INDEX' | translate ]]</li>
-              <li id="by_gender_ratio" class="li-disabled" hidden>[[ 'RATIO' | translate ]]</li>
-              <li id="by_gender_female" class="li-disabled">[[ 'FEMALE' | translate ]]</li>
-              <li id="by_gender_male" class="li-disabled">[[ 'MALE' | translate ]]</li>
+              <li id="by_gender_index" class="li-disabled tip" hidden>[[ 'INDEX' | translate ]] <span class="">[[ 'INDEX: showing the gender index' | translate ]]</span></li>
+              <li id="by_gender_ratio" class="li-disabled tip" hidden>[[ 'RATIO' | translate ]] <span class="">[[ 'RATIO: showing the ratio of male and female' | translate ]]</span></li>
+              <li id="by_gender_female" class="li-disabled tip">[[ 'FEMALE' | translate ]] <span class="">[[ 'FEMALE:  showing data for/by female' | translate ]]</span></li>
+              <li id="by_gender_male" class="li-disabled tip">[[ 'MALE' | translate ]] <span class="">[[ 'MALE: showing data for/by male' | translate ]]</span></li>
             </ul>
           </div>
 
@@ -266,24 +263,29 @@
           <div class="row justify-content-start align-items-center">
             <div class="col-lg-12">
               <div class="main_title text-left">
-                <div class="section_title">
+                <!-- <div class="section_title">
                   <div class="section_title_text"> [['Gender Inequality Index' | translate ]] </div>
-                </div>
+                </div> -->
+                <br>
+                <br>
                 <div class="row justify-content-start">
 
                   <div class="col-lg-12">
                     <!-- <h4>What does the GII measure and how is it calculated?</h4> -->
                     <p>Gender Inequality Index (GII), introduced by UNDP in 2010,  quantifies inequality between women and men in three dimensions of human development: reproductive health, empowerment, and labor. In which, reproductive health is measured by maternal mortality ratio and adolescent birth rates; empowerment is measured by gender ratio in parliamentary seats, and in secondary education; labor is measured by labor force participation rate of female and male populations aged 15 years and older).</p>
                     <p>The index ranges from 0 (for gender equality) to 1 (gender inequality).</p>
-                    <p>While national GII is based on the original GII created by UNDP, at sub-national level, the datasets for the calculation of GII are slightly varies between the countries due to the unavailability of data. For more details of GII calculation at national and sub-national level, go to  <a href="#"> “Technical Notes” </a>.</p>
-                    <p style="font-style: italic; color: #d63b84;">You can click on country boundaries on the interactive map to show the graph compares gender inequality or gender dimension index, the graph will be shown below.</p>
+                    <p>While national GII is based on the original GII created by UNDP, at sub-national level, the datasets for the calculation of GII are slightly varies between the countries due to the unavailability of data. For more details of GII calculation at national and sub-national level, go to  <a href="#"> “Technical Notes” </a> <button id="guiding-button" style="margin-top: 5px;background: none; border: none; font-size:12px; color: #2A3783 ; cursor:pointer; padding:0; display: inline;">[[ 'and click here for a quick guide' | translate ]]</button></p>
+                    
+     
                   </div>
+                  
 
                   <div class="col-lg-12" ng-show="showDIVChartDesc">
                     <p style="font-size:18px;"><b id="selected_country_name"></b></p>
                     <b id="selected_dimension_name"></b>
                     <p id="chart-desc"></p>
                     <p id="chart-desc2"></p>
+                    <p id="chart_instruction" style="font-style: italic; color: #d63b84;"></p>
                   </div>
 
 
@@ -295,6 +297,7 @@
                     <br>
 
                     <div ng-show="showLineChart">
+                      <hr>
                       <div class="input-daterange input-group" id="datepicker" style="width: 60%">
                         <span class="input-group-addon input-yearselect-text">[['FROM' | translate ]]</span>
                         <input type="text" class="input-sm form-control input-yearselect" id="start" value="2010"/>
@@ -304,6 +307,7 @@
                       <div id="line-chart-container"></div>
                       <br>
                       <div class="col-12" ng-show="showGIISpider">
+                        <hr>
                         <div class="row">
                           <p id="chart-gii-spider-desc">These graphs illustrate the difference between women and men in the aspect of access to reproductive healthcare, participation in labor market and empowerment. The higher value indicates the better access or participation to public services, employment and political arena.</p>
                           <div class="">
@@ -320,6 +324,7 @@
                     </div>
                     <br>
                     <div id="div-dimension-chart" ng-show="showDivDimensionChart">
+                      <hr>
                       <div class="col-lg-12 align-items-center" style="text-align-last: center;">
                         <ul  class="switchbutton" style="list-style: none;padding-inline-start: 0px; cursor: pointer;float: left;">
                           <li class="active" id="dimension_spiderweb_chart">SPIDERWEB CHART</li>

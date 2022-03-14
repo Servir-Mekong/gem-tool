@@ -444,6 +444,7 @@ angular.module('baseApp')
 		$("#selected_country_name").html("");
 		$("#chart-desc2").html("");
 		$("#chart-desc").html("");
+		$("#chart_instruction").html("");
 
 		var dimension_desc = {
 			'ALL' : "The calculation of GII at sub-national level varies slightly according to the availability of data. It is important to note that in countries where data is available such as Cambodia, Lao PDR and Vietnam, we add an additional dimension to the GII, i.e. ‘gender based violence’ because it reflects social norms and gender status, a crucial measurement of gender inequality. In Cambodia, we also add intra-household power dynamics to empowerment dimension.",
@@ -509,10 +510,11 @@ angular.module('baseApp')
 		var selected_country_name = $("#adm0_dropdown").find('option:selected').text();
 		var selected_country_id= $("#adm0_dropdown").find('option:selected').val();
 		var selected_data = $("#gii_dimension_dropdown").find('option:selected').text();
-
+		var chart_instruction = "";
 		if(dataType === 'gii'){
 			$scope.showDIVChartDesc = true;
 			chart_desc = "This graph compares gender inequality among the Mekong countries in "+year+". The higher index value, the less equal women in the countries experience.";
+			chart_instruction = "To view the graphs for one or multiple locations, you need to define administrative unit to be shown in the map by clicking on button ‘BY COUNTRY’ or ‘BY PROVINCE’ located above the map. Then you can select the location(s) by clicking on the map.";
 			if(admin_level === 'province'){
 				if(selected_country_id === '9999'){
 					chart_desc = "This graph illustrates the state of gender inequality between sub-national administrative units in Mekong countries in "+year+". The higher index value, the less equal women in the countries experience.";
@@ -527,6 +529,7 @@ angular.module('baseApp')
 				}
 			}
 		}else{
+			chart_instruction  = "To generate the graphs on "+selected_data+" for one or multiple locations, you need to define administrative unit to be shown in the map by clicking on button ‘BY COUNTRY’ or ‘BY PROVINCE’ located above the map. Then you can select the location(s) by clicking on the map";
 			$scope.showDIVChartDesc = true;
 			$("#gii_text_detial").css("display", "none");
 			if(selected_country_name === 'All'){
@@ -537,9 +540,11 @@ angular.module('baseApp')
 				chart_desc = dimension_desc[selected_country_name][selected_data][0];
 				var chart_desc2 = dimension_desc[selected_country_name][selected_data][1];
 				$("#chart-desc2").text(chart_desc2);
+				
 			}
 		}
 		$("#chart-desc").text(chart_desc);
+		$("#chart_instruction").text(chart_instruction);
 	};
 
 	$scope.getCountryMap = function (id) {
@@ -610,7 +615,7 @@ angular.module('baseApp')
 			$.each(result, function (i, item) {
 				MainGIISector.push(item["common_id"]);
 				MainGIISectorDes.push(item["common_desc"]);
-				$("#gii_dimension_dropdown").append('<option value="'+item["common_id"]+'">'+item["common_desc"]+'</option>');
+				$("#gii_dimension_dropdown").append('<option value="'+item["common_id"]+'">&#8203;&#8203;&#8203;&#8203; GII dimension: '+item["common_desc"]+'</option>');
 			});
 		});
 	};
@@ -935,7 +940,12 @@ angular.module('baseApp')
 				type: 'line',
 				style: {
 					fontFamily: 'Roboto'
-				}
+				},
+				margins: [0,0,0,0],
+				spacingTop: 0,
+				spacingBottom: 0,
+				spacingLeft: 0,
+				spacingRight: 0,
 			},
 			credits: {
 				enabled: false
@@ -969,6 +979,7 @@ angular.module('baseApp')
 				gridLineColor: '#123FFF',
 				lineWidth: 1,
 				min: 0,
+				// max: 1
 
 			},
 			tooltip: {
@@ -1015,7 +1026,7 @@ angular.module('baseApp')
 							layout: 'vertical'
 						},
 						pane: {
-							size: '10%'
+							size: '100%'
 						}
 					}
 				}]
@@ -2031,7 +2042,7 @@ angular.module('baseApp')
 			area_id = '9999';
 			drowdown_country = "'154','228','40','250','123'";
 		}else{
-			$("#province-dropdown").css("display", "block");
+			// $("#province-dropdown").css("display", "block");
 		}
 		$scope.check_gii_available_year();
 		$("#adm1_dropdown").html("");
@@ -2052,6 +2063,7 @@ angular.module('baseApp')
 			area_id = '9999';
 			nodata_feature = adm1_feature;
 		}
+		// $("#by_gender_female").click();
 		$scope.updateMap();
 	});
 
@@ -2139,6 +2151,7 @@ angular.module('baseApp')
 
 
 	$("#data_level_country").click(function(){
+		$("#province-dropdown").css("display", "none");
 		hideGIICharts();
 		selected_features = ['in', 'area_id'];
 		chart_spider_series_female = [];
@@ -2157,6 +2170,7 @@ angular.module('baseApp')
 	});
 
 	$("#data_level_province").click(function(){
+		$("#province-dropdown").css("display", "block");
 		hideGIICharts();
 		selected_features = ['in', 'area_id'];
 		chart_spider_series_female = [];
@@ -2193,6 +2207,7 @@ angular.module('baseApp')
 	});
 
 	$("#by_gender_female").click(function(){
+		
 		hideGIICharts();
 		selected_features = ['in', 'area_id'];
 		chart_spider_series_female = [];
@@ -2237,6 +2252,7 @@ angular.module('baseApp')
 	});
 
 	$('#reset_map').click(function () {
+		$("#province-dropdown").css("display", "none");
 		$scope.resetMap();
 	});
 
