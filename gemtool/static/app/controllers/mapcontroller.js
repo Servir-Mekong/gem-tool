@@ -2042,6 +2042,7 @@ angular.module('baseApp')
 			area_id = '9999';
 			drowdown_country = "'154','228','40','250','123'";
 		}else{
+			// area_id = '9999';
 			// $("#province-dropdown").css("display", "block");
 		}
 		$scope.check_gii_available_year();
@@ -2154,12 +2155,15 @@ angular.module('baseApp')
 		$("#province-dropdown").css("display", "none");
 		hideGIICharts();
 		selected_features = ['in', 'area_id'];
+		
 		chart_spider_series_female = [];
 		chart_spider_series_male = [];
 		if($("#adm1_dropdown").find('option:selected').val() === '9999'){
 			area_id = '9999';
 		}else{
-			area_id = $("#adm1_dropdown").find('option:selected').val();
+			// area_id = $("#adm1_dropdown").find('option:selected').val();
+
+			area_id = '9999';
 		}
 		$("#data_level_province").removeClass("active");
 		$(this).addClass("active");
