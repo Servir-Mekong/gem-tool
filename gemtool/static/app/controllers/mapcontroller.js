@@ -145,6 +145,7 @@ angular.module('baseApp')
 		onChange: function(data) {
 			year = data.slider.context.value;
 			area_id = '9999';
+			$("#adm1_dropdown").val("9999");
 			hideGIICharts();
 			selected_features = ['in', 'area_id'];
 			chart_spider_series_female = [];
@@ -979,7 +980,7 @@ angular.module('baseApp')
 				gridLineColor: '#123FFF',
 				lineWidth: 1,
 				min: 0,
-				// max: 1
+				max: 1
 
 			},
 			tooltip: {
@@ -1101,18 +1102,18 @@ angular.module('baseApp')
 
 		var new_item_f = {
 			name: _map_clicked_name,
-			data: [null , null , null],
+			data: [null , null , null, null],
 			pointPlacement: 'on'
 		};
 		var new_item_m = {
 			name: _map_clicked_name,
-			data: [null , null , null],
+			data: [null , null , null, null],
 			pointPlacement: 'on'
 		};
 
 		APIService.getDimensionData(params)
 		.then(function (result){
-			var dimensions = ['Empowerment', 'Labour Force', 'Reproductive health'];
+			var dimensions = ['Empowerment', 'Labour Force', 'Reproductive health', 'Violence'];
 			var _gender= ['female', 'male'];
 			for (var i = 0; i <result.length; i++) {
 				for (var j = 0; j < dimensions.length; j++) {
@@ -1128,7 +1129,7 @@ angular.module('baseApp')
 			chart_spider_series_female.push(new_item_f);
 			chart_spider_series_male.push(new_item_m);
 
-			var chart_categories = ['Empowerment', 'Labour Force', 'Reproductive health'];
+			var chart_categories = ['Empowerment', 'Labour Force', 'Reproductive health', 'Violence'];
 			$scope.genSpiderChart("GII Dimension : Male", year , chart_categories, chart_spider_series_male, 'spider-male-container');
 			$scope.genSpiderChart("GII Dimension : Female", year , chart_categories, chart_spider_series_female, 'spider-female-container');
 		});
@@ -1240,7 +1241,7 @@ angular.module('baseApp')
 				line_chart_series.push(country_data);
 			}
 
-			var line_chart_title = selected_data_text.toUpperCase();
+			var line_chart_title = selected_data_text.toUpperCase() + " [" +by_gender+"]";
 			var line_chart_sub_title = datepicker_start + ' to ' + datepicker_end;
 			var line_chart_yAxis = selected_data_text;
 			$scope.genLineChart(line_chart_title, line_chart_sub_title, line_chart_yAxis, line_chart_series);
@@ -1902,7 +1903,7 @@ angular.module('baseApp')
 					chart_spider_series_male.splice(dl_idx,1);
 					chart_spider_series_female.splice(dl_idx,1);
 
-					var chart_categories = ['Empowerment', 'Labour Force', 'Reproductive health'];
+					var chart_categories = ['Empowerment', 'Labour Force', 'Reproductive health', 'Violence'];
 					$scope.genSpiderChart("GII Dimension : Male", year , chart_categories, chart_spider_series_male, 'spider-male-container');
 					$scope.genSpiderChart("GII Dimension : Female", year , chart_categories, chart_spider_series_female, 'spider-female-container');
 				}
@@ -1963,6 +1964,11 @@ angular.module('baseApp')
 		});
 		filter = features.reduce(
 			function (memo, feature) {
+				if(admin_level === 'country'){
+					_map_clicked_name =  feature.properties.area_name;
+				}else{
+					_map_clicked_name = feature.properties.area_name + "<br>("+feature.properties.country_name + ")";
+				}
 				if(selected_features.includes(feature.properties.area_id)){
 					var index = selected_features.indexOf(feature.properties.area_id);
 					if (index !== -1) {
@@ -1972,11 +1978,6 @@ angular.module('baseApp')
 					memo.push(feature.properties.area_id);
 					area_id += ", "+feature.properties.area_id;
 					_map_clicked = feature.properties.area_id;
-					if(admin_level === 'country'){
-						_map_clicked_name =  feature.properties.area_name;
-					}else{
-						_map_clicked_name = feature.properties.area_name + "<br>("+feature.properties.country_name + ")";
-					}
 				}
 				return memo;
 			},
@@ -2179,9 +2180,11 @@ angular.module('baseApp')
 		selected_features = ['in', 'area_id'];
 		chart_spider_series_female = [];
 		chart_spider_series_male = [];
-
+	
 		if($("#adm1_dropdown").val() === '9999'){
 			area_id = '9999';
+		}else{
+			area_id = "'"+$("#adm1_dropdown").val().toString()+"'";
 		}
 		$("#data_level_country").removeClass("active");
 		$(this).addClass("active");
