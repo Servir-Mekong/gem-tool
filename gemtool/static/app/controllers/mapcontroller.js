@@ -2228,6 +2228,7 @@ angular.module('baseApp')
 		chart_spider_series_female = [];
 		chart_spider_series_male = [];
 		area_id = '9999';
+		$("#adm1_dropdown").val('9999');
 		$("#by_gender_ratio").removeClass("active");
 		$("#by_gender_index").removeClass("active");
 		$("#by_gender_male").removeClass("active");
@@ -2243,6 +2244,7 @@ angular.module('baseApp')
 		chart_spider_series_male = [];
 
 		area_id = '9999';
+		$("#adm1_dropdown").val('9999');
 		$("#by_gender_ratio").removeClass("active");
 		$("#by_gender_index").removeClass("active");
 		$("#by_gender_female").removeClass("active");
