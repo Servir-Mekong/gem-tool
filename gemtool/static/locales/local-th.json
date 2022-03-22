@@ -62,5 +62,6 @@
     "DOWNLOAD GII" : "ดาวน์โหลดข้อมูลดัชนีความไม่เสมอภาคชายหญิง",
     "GENDER INEQUALITY INDEX (GII)": "ดัชนีความไม่เสมอภาคชายหญิง (GII)",
     "Select a main sex-disaggregated data": "เลือกประเภทข้อมูลหลักที่ต้องการแสดงผล",
-    "Select a sex-disaggregated data": "เลือกข้อมูลเกี่ยวกับช่องว่างระหว่างเพศที่ต้องการแสดงผล"
+    "Select a sex-disaggregated data": "เลือกข้อมูลเกี่ยวกับช่องว่างระหว่างเพศที่ต้องการแสดงผล",
+    "Select datasets": "เลือกข้อมูล"
 }
