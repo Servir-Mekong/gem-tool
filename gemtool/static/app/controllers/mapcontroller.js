@@ -144,7 +144,9 @@ angular.module('baseApp')
 		values:[],
 		onChange: function(data) {
 			year = data.slider.context.value;
-			// area_id = '9999';
+			if($("#adm1_dropdown").val() === '9999'){
+				area_id = '9999';
+			}
 			// $("#adm1_dropdown").val("9999");
 			hideGIICharts();
 			selected_features = ['in', 'area_id'];
