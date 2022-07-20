@@ -7,7 +7,7 @@ angular.module('baseApp')
 		container: 'map',
 		style: 'mapbox://styles/mapbox/light-v10',
 		center: [103, 15.5],
-		minZoom: 3,
+		minZoom: 5,
 		zoom: 4,
 		pitch: 0,
 		bearing: 0,
@@ -242,11 +242,11 @@ angular.module('baseApp')
 		// }
 		
 		legend_label = [
-			'< '+ CLASS_1.toString(),
-			CLASS_1.toString() + ' - '+ CLASS_2.toString(),
-			CLASS_2.toString() + ' - '+ CLASS_3.toString(),
-			CLASS_3.toString() + ' - '+ CLASS_4.toString(),
-			'> ' + CLASS_4.toString(),
+			'< '+ parseInt(CLASS_1.toString()),
+			parseInt(CLASS_1.toString()) + ' - '+ parseInt(CLASS_2.toString()),
+			parseInt(CLASS_2.toString()) + ' - '+ parseInt(CLASS_3.toString())	,
+			parseInt(CLASS_3.toString()) + ' - '+ parseInt(CLASS_4.toString()),
+			'> ' + parseInt(CLASS_4.toString()),
 			'No Data',
 		];
 

@@ -1069,9 +1069,9 @@ def get_gii_indicators(id):
             #     sql = "select count(g.id), g.indicator_desc, g.common_id, g.indicator_id, g.unit from gii_indicators_table g where common_id='"+id+"' GROUP BY g.indicator_desc, g.common_id, g.indicator_id, g.unit;"
 
             if id=='9999':
-                sql = "select  g.indicator_desc, g.common_id, g.indicator_id, g.unit from gii_indicators_table g group by  indicator_desc, common_id, indicator_id, unit;"
+                sql = "select  g.indicator_desc, g.common_id, g.indicator_id, g.unit from gii_indicators_table g group by  indicator_desc, common_id, indicator_id, unit order by indicator_desc ASC;"
             else:
-                sql = "select  g.indicator_desc, g.common_id, g.indicator_id, g.unit from gii_indicators_table g where common_id='"+id+"' group by  indicator_desc, common_id, indicator_id, unit;"
+                sql = "select  g.indicator_desc, g.common_id, g.indicator_id, g.unit from gii_indicators_table g where common_id='"+id+"' group by  indicator_desc, common_id, indicator_id, unit order by indicator_desc ASC;"
 
             cursor.execute(sql)
             data = cursor.fetchall()
