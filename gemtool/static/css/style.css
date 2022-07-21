@@ -571,7 +571,7 @@ margin-bottom: 3px;
 /*----------------------------------------------------*/
 /* Home Banner Area css
 ============================================================================================ */
-.home_banner_area {
+/* .home_banner_area {
   z-index: 1;
   background: url('/static/images/banner/home-banner5.png') no-repeat top center;
   background-position: center;
@@ -600,7 +600,7 @@ margin-bottom: 3px;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: 800;
-}
+} */
 
 .header_area:after {
   content: "";
@@ -1146,7 +1146,7 @@ h6 {
     .portfolio_area .filters ul li {
       display: inline-block;
       margin-right: 50px;
-      padding: 15px 0;
+      /* padding: 15px 0; */
       font-size: 14px;
       font-weight: 500;
       text-transform: uppercase;
