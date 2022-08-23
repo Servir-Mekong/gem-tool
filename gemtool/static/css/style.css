@@ -242,7 +242,7 @@ margin-bottom: 3px;
 --------------------------------------------------------------*/
 .usaid {
   background-size: auto 50px;
-  width: 120px !important;
+  width: 170px !important;
   float: left;
   margin-right: 5px;
   margin-bottom: 3px;
@@ -256,7 +256,7 @@ margin-bottom: 3px;
 
 .nasa {
   background-size: auto 50px;
-  width: 40px !important;
+  width: 60px !important;
   float: left;
   margin-right: 5px;
 }
@@ -269,7 +269,7 @@ margin-bottom: 3px;
 
 .adpc {
   background-size: auto 50px;
-  width: 70px !important;
+  width: 100px !important;
   float: left;
 }
 
@@ -295,7 +295,7 @@ margin-bottom: 3px;
 .servir {
   float: right;
   background-size: auto 35px;
-  width: 200px !important;
+  width: 260px !important;
   padding-top: 10px;
 }
 
@@ -314,7 +314,7 @@ margin-bottom: 3px;
   padding: 10px 0;
   border-bottom: 1px solid #eee;
   font-size: 14px;
-  height: 50px;
+  height: 70px;
 }
 
 #topbar .contact-info a {
