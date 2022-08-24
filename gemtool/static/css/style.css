@@ -244,7 +244,7 @@ margin-bottom: 3px;
   background-size: auto 50px;
   width: 170px !important;
   float: left;
-  margin-right: 5px;
+  margin-right: 15px;
   margin-bottom: 3px;
 }
 
@@ -258,7 +258,7 @@ margin-bottom: 3px;
   background-size: auto 50px;
   width: 60px !important;
   float: left;
-  margin-right: 5px;
+  margin-right: 15px;
 }
 
 @media (max-width: 1024px) {
