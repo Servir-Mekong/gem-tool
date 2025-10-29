@@ -658,7 +658,6 @@ def download_gii_dimension(area_id, level, common_id, country_id, start_year, en
 
 def download_gii_indicator(area_id, level, indicator_id, country_id, start_year, end_year):
     try:
-
         features=[]
         features.append({
                         "type": "FeatureCollection",
