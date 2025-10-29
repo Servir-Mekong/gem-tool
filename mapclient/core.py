@@ -656,127 +656,6 @@ def download_gii_dimension(area_id, level, common_id, country_id, start_year, en
     except Exception as e:
         return e
 
-# def download_gii_indicator(area_id, level, indicator_id, country_id, start_year, end_year):
-#     try:
-
-#         features=[]
-#         features.append({
-#                         "type": "FeatureCollection",
-#                         "features": []
-#                     })
-#         with connection.cursor() as cursor:
-#             mainSqlCountry = """SELECT female.admin_level, female.area_id, female.name_0, female.year, female.value as female,  male.value as male, female.common_id, female.common_des, female.indicator_id, female.indicator_desc, female.st_asgeojson
-#                 FROM (SELECT t1.admin_level, t1.area_id, t1.year, t2.indicator_id, t1.value, t4.name_0, t2.indicator_desc, t2.data, t2.unit, t3.common_id, t3.common_des, st_AsGeoJSON(t4.geom, 3)
-#                 FROM gii_indicator_data_table AS t1
-#                 LEFT JOIN gii_indicators_table AS t2 ON t1.indicator_id = t2.unique_indicator_id
-#                 LEFT JOIN gii_common_id_table AS t3 ON  t2.common_id = t3.common_id
-#                 LEFT JOIN adm0 AS t4 ON t1.area_id = t4.area_id
-#                 WHERE t1.year BETWEEN """+start_year+""" AND """+end_year+""" AND t1.admin_level = '"""+level+"""' AND t2.indicator_id= '"""+indicator_id+"""' AND t2.data= 'female' {}) AS female
-# 				LEFT JOIN (SELECT t1.admin_level, t1.area_id, t1.year, t2.indicator_id, t1.value, t4.name_0, t2.indicator_desc, t2.data, t2.unit, t3.common_id, t3.common_des, st_AsGeoJSON(t4.geom, 3)
-#                 FROM gii_indicator_data_table AS t1
-#                 LEFT JOIN gii_indicators_table AS t2 ON t1.indicator_id = t2.unique_indicator_id
-#                 LEFT JOIN gii_common_id_table AS t3 ON  t2.common_id = t3.common_id
-#                 LEFT JOIN adm0 AS t4 ON t1.area_id = t4.area_id
-#                 WHERE t1.year BETWEEN """+start_year+""" AND """+end_year+""" AND t1.admin_level = '"""+level+"""' AND t2.indicator_id= '"""+indicator_id+"""' AND t2.data= 'male' {}) AS male ON female.area_id = male.area_id AND female.year = male.year AND female.common_id = male.common_id;"""
-
-
-#             mainSqlProvince = """SELECT female.admin_level, female.area_id, female.name_0, female.name_1, female.year, female.value as female,  male.value as male, female.common_id, female.common_des, female.indicator_id, female.indicator_desc, female.st_asgeojson
-#                 FROM (SELECT t1.admin_level, t1.area_id, t1.year, t2.indicator_id, t1.value, t4.name_0, t4.name_1, t2.indicator_desc, t2.data, t2.unit, t3.common_id, t3.common_des, st_AsGeoJSON(t4.geom, 3)
-#                 FROM gii_indicator_data_table AS t1
-#                 LEFT JOIN gii_indicators_table AS t2 ON t1.indicator_id = t2.unique_indicator_id
-#                 LEFT JOIN gii_common_id_table AS t3 ON  t2.common_id = t3.common_id
-#                 LEFT JOIN adm1 AS t4 ON t1.area_id = t4.area_id
-#                 WHERE t1.year BETWEEN """+start_year+""" AND """+end_year+"""  AND t1.admin_level = '"""+level+"""' AND t2.indicator_id= '"""+indicator_id+"""' AND t2.data= 'female' {}) AS female
-# 				LEFT JOIN (SELECT t1.admin_level, t1.area_id, t1.year, t2.indicator_id, t1.value, t4.name_0, t4.name_1, t2.indicator_desc, t2.data, t2.unit, t3.common_id, t3.common_des, st_AsGeoJSON(t4.geom, 3)
-#                 FROM gii_indicator_data_table AS t1
-#                 LEFT JOIN gii_indicators_table AS t2 ON t1.indicator_id = t2.unique_indicator_id
-#                 LEFT JOIN gii_common_id_table AS t3 ON  t2.common_id = t3.common_id
-#                 LEFT JOIN adm1 AS t4 ON t1.area_id = t4.area_id
-#                 WHERE t1.year BETWEEN """+start_year+""" AND """+end_year+"""  AND t1.admin_level = '"""+level+"""' AND t2.indicator_id= '"""+indicator_id+"""' AND t2.data= 'male' {}) AS male ON female.area_id = male.area_id AND female.year = male.year AND female.common_id = male.common_id; """
-
-#             if level=='country' and area_id == '9999' and country_id == '9999' :
-#                 sql = mainSqlCountry.format(" ", " ")
-
-#             elif level=='country' and area_id != '9999':
-#                 sql = mainSqlCountry.format(""" AND t1.area_id::text in ("""+area_id+""")""" , """ AND t1.area_id::text in ("""+area_id+""")""")
-
-#             elif level=='country' and area_id == '9999' and country_id !='':
-#                 sql = mainSqlCountry.format(""" AND t4.id_0= """+country_id+""" """ , """ AND t4.id_0= """+country_id+""" """)
-
-#             elif level=='country' and area_id == '9999' and country_id =='':
-#                 sql = mainSqlCountry.format(" ", " ")
-
-#             elif level=='province' and area_id == '9999' and country_id == '9999':
-#                 sql = mainSqlProvince.format(" ", " ")
-
-#             elif level=='province' and area_id != '9999':
-#                 sql = mainSqlProvince.format(""" AND t1.area_id::text in ("""+area_id+""")""" , """ AND t1.area_id::text in ("""+area_id+""")""")
-
-#             elif level=='province' and area_id == '9999' and country_id !='':
-
-#                 sql = mainSqlProvince.format(""" AND t4.id_0= """+country_id+""" """ , """ AND t4.id_0= """+country_id+""" """)
-
-#             elif level=='province' and area_id == '9999' and country_id =='':
-#                 sql = mainSqlProvince.format(" ", " ")
-
-#             print(sql)
-#             cursor.execute(sql)
-#             data = cursor.fetchall()
-
-#             for row in data:
-#                 if level=='country':
-#                     feature_prop = {
-#                     "admin_level": row[0],
-#                     "area_id": row[1],
-#                     "name_0": row[2],
-#                     "year": row[3],
-#                     "female": row[4],
-#                     "male": row[5],
-#                     "common_id": row[6],
-#                     "common_des": row[7],
-#                     "indicator_id": row[8],
-#                     "indicator_desc": row[9],
-#                     }
-
-#                     feature = {
-#                     "type": "Feature",
-#                     "name": row[2],
-#                     "id": row[1],
-#                     "properties": feature_prop,
-#                     "geometry": json.loads(row[10])
-#                     }
-#                 else:
-#                     feature_prop = {
-#                     "admin_level": row[0],
-#                     "area_id": row[1],
-#                     "name_0": row[2],
-#                     "name_1": row[3],
-#                     "year": row[4],
-#                     "female": row[5],
-#                     "male": row[6],
-#                     "common_id": row[7],
-#                     "common_des": row[8],
-#                     "indicator_id": row[9],
-#                     "indicator_desc": row[10],
-#                     }
-
-#                     feature = {
-#                     "type": "Feature",
-#                     "name": row[2],
-#                     "id": row[1],
-#                     "properties": feature_prop,
-#                     "geometry": json.loads(row[11])
-#                     }
-
-
-#                 features[0]["features"].append(feature)
-
-#         return features
-#     except Exception as e:
-#         return e
-
-
-
 def download_gii_indicator(area_id, level, indicator_id, country_id, start_year, end_year):
     try:
 
@@ -786,20 +665,34 @@ def download_gii_indicator(area_id, level, indicator_id, country_id, start_year,
                         "features": []
                     })
         with connection.cursor() as cursor:
-            mainSqlCountry = """SELECT t1.admin_level, t1.area_id, t1.year, t2.indicator_id, t1.value, t4.name_0, t2.indicator_desc, t2.data, t2.unit, t3.common_id, t3.common_des, st_AsGeoJSON(t4.geom, 3)
+            mainSqlCountry = """SELECT female.admin_level, female.area_id, female.name_0, female.year, female.value as female,  male.value as male, female.common_id, female.common_des, female.indicator_id, female.indicator_desc, female.st_asgeojson
+                FROM (SELECT t1.admin_level, t1.area_id, t1.year, t2.indicator_id, t1.value, t4.name_0, t2.indicator_desc, t2.data, t2.unit, t3.common_id, t3.common_des, st_AsGeoJSON(t4.geom, 3)
                 FROM gii_indicator_data_table AS t1
-                INNER JOIN gii_indicators_table AS t2 ON t1.indicator_id = t2.unique_indicator_id
-                INNER JOIN gii_common_id_table AS t3 ON  t2.common_id = t3.common_id
-                INNER JOIN adm0 AS t4 ON t1.area_id = t4.area_id
-                WHERE t1.year BETWEEN """+start_year+""" AND """+end_year+""" AND t1.admin_level = '"""+level+"""' AND t1.indicator_id= '"""+indicator_id+"""' {}"""
+                LEFT JOIN gii_indicators_table AS t2 ON t1.indicator_id = t2.unique_indicator_id
+                LEFT JOIN gii_common_id_table AS t3 ON  t2.common_id = t3.common_id
+                LEFT JOIN adm0 AS t4 ON t1.area_id = t4.area_id
+                WHERE t1.year BETWEEN """+start_year+""" AND """+end_year+""" AND t1.admin_level = '"""+level+"""' AND t2.indicator_id= '"""+indicator_id+"""' AND t2.data= 'female' {}) AS female
+				LEFT JOIN (SELECT t1.admin_level, t1.area_id, t1.year, t2.indicator_id, t1.value, t4.name_0, t2.indicator_desc, t2.data, t2.unit, t3.common_id, t3.common_des, st_AsGeoJSON(t4.geom, 3)
+                FROM gii_indicator_data_table AS t1
+                LEFT JOIN gii_indicators_table AS t2 ON t1.indicator_id = t2.unique_indicator_id
+                LEFT JOIN gii_common_id_table AS t3 ON  t2.common_id = t3.common_id
+                LEFT JOIN adm0 AS t4 ON t1.area_id = t4.area_id
+                WHERE t1.year BETWEEN """+start_year+""" AND """+end_year+""" AND t1.admin_level = '"""+level+"""' AND t2.indicator_id= '"""+indicator_id+"""' AND t2.data= 'male' {}) AS male ON female.area_id = male.area_id AND female.year = male.year AND female.common_id = male.common_id;"""
 
 
-            mainSqlProvince = """SELECT t1.admin_level, t1.area_id, t1.year, t2.indicator_id, t1.value, t4.name_0, t4.name_1, t2.indicator_desc, t2.data, t2.unit, t3.common_id, t3.common_des, st_AsGeoJSON(t4.geom, 3)
+            mainSqlProvince = """SELECT female.admin_level, female.area_id, female.name_0, female.name_1, female.year, female.value as female,  male.value as male, female.common_id, female.common_des, female.indicator_id, female.indicator_desc, female.st_asgeojson
+                FROM (SELECT t1.admin_level, t1.area_id, t1.year, t2.indicator_id, t1.value, t4.name_0, t4.name_1, t2.indicator_desc, t2.data, t2.unit, t3.common_id, t3.common_des, st_AsGeoJSON(t4.geom, 3)
                 FROM gii_indicator_data_table AS t1
-                INNER JOIN gii_indicators_table AS t2 ON t1.indicator_id = t2.unique_indicator_id
-                INNER JOIN gii_common_id_table AS t3 ON  t2.common_id = t3.common_id
-                INNER JOIN adm1 AS t4 ON t1.area_id = t4.area_id
-                WHERE t1.year BETWEEN """+start_year+""" AND """+end_year+"""  AND t1.admin_level = '"""+level+"""' AND t1.indicator_id= '"""+indicator_id+"""' {}"""
+                LEFT JOIN gii_indicators_table AS t2 ON t1.indicator_id = t2.unique_indicator_id
+                LEFT JOIN gii_common_id_table AS t3 ON  t2.common_id = t3.common_id
+                LEFT JOIN adm1 AS t4 ON t1.area_id = t4.area_id
+                WHERE t1.year BETWEEN """+start_year+""" AND """+end_year+"""  AND t1.admin_level = '"""+level+"""' AND t2.indicator_id= '"""+indicator_id+"""' AND t2.data= 'female' {}) AS female
+				LEFT JOIN (SELECT t1.admin_level, t1.area_id, t1.year, t2.indicator_id, t1.value, t4.name_0, t4.name_1, t2.indicator_desc, t2.data, t2.unit, t3.common_id, t3.common_des, st_AsGeoJSON(t4.geom, 3)
+                FROM gii_indicator_data_table AS t1
+                LEFT JOIN gii_indicators_table AS t2 ON t1.indicator_id = t2.unique_indicator_id
+                LEFT JOIN gii_common_id_table AS t3 ON  t2.common_id = t3.common_id
+                LEFT JOIN adm1 AS t4 ON t1.area_id = t4.area_id
+                WHERE t1.year BETWEEN """+start_year+""" AND """+end_year+"""  AND t1.admin_level = '"""+level+"""' AND t2.indicator_id= '"""+indicator_id+"""' AND t2.data= 'male' {}) AS male ON female.area_id = male.area_id AND female.year = male.year AND female.common_id = male.common_id; """
 
             if level=='country' and area_id == '9999' and country_id == '9999' :
                 sql = mainSqlCountry.format(" ", " ")
@@ -826,6 +719,7 @@ def download_gii_indicator(area_id, level, indicator_id, country_id, start_year,
             elif level=='province' and area_id == '9999' and country_id =='':
                 sql = mainSqlProvince.format(" ", " ")
 
+            print(sql)
             cursor.execute(sql)
             data = cursor.fetchall()
 
@@ -834,47 +728,44 @@ def download_gii_indicator(area_id, level, indicator_id, country_id, start_year,
                     feature_prop = {
                     "admin_level": row[0],
                     "area_id": row[1],
-                    "year": row[2],
-                    "indicator id": row[3],
-                    "value": row[4],
-                    "name_0": row[5],
-                    "indicator_desc": row[6],
-                    "data": row[7],
-                    "unit": row[8],
-                    "common_id": row[9],
-                    "common_des": row[10],
+                    "name_0": row[2],
+                    "year": row[3],
+                    "female": row[4],
+                    "male": row[5],
+                    "common_id": row[6],
+                    "common_des": row[7],
+                    "indicator_id": row[8],
+                    "indicator_desc": row[9],
                     }
 
                     feature = {
                     "type": "Feature",
-                    "name": row[5],
+                    "name": row[2],
                     "id": row[1],
                     "properties": feature_prop,
-                    "geometry": json.loads(row[11])
+                    "geometry": json.loads(row[10])
                     }
                 else:
                     feature_prop = {
                     "admin_level": row[0],
                     "area_id": row[1],
-                    "year": row[2],
-                    "indicator id": row[3],
-                    "value": row[4],
-                    "name_0": row[5],
-                    "name_1": row[6],
-                    "indicator_desc": row[7],
-                    "data": row[8],
-                    "unit": row[9],
-                    "common_id": row[10],
-                    "common_des": row[11],
-
+                    "name_0": row[2],
+                    "name_1": row[3],
+                    "year": row[4],
+                    "female": row[5],
+                    "male": row[6],
+                    "common_id": row[7],
+                    "common_des": row[8],
+                    "indicator_id": row[9],
+                    "indicator_desc": row[10],
                     }
 
                     feature = {
                     "type": "Feature",
-                    "name": row[6],
+                    "name": row[2],
                     "id": row[1],
                     "properties": feature_prop,
-                    "geometry": json.loads(row[12])
+                    "geometry": json.loads(row[11])
                     }
 
 
@@ -883,6 +774,115 @@ def download_gii_indicator(area_id, level, indicator_id, country_id, start_year,
         return features
     except Exception as e:
         return e
+
+
+
+# def download_gii_indicator(area_id, level, indicator_id, country_id, start_year, end_year):
+#     try:
+
+#         features=[]
+#         features.append({
+#                         "type": "FeatureCollection",
+#                         "features": []
+#                     })
+#         with connection.cursor() as cursor:
+#             mainSqlCountry = """SELECT t1.admin_level, t1.area_id, t1.year, t2.indicator_id, t1.value, t4.name_0, t2.indicator_desc, t2.data, t2.unit, t3.common_id, t3.common_des, st_AsGeoJSON(t4.geom, 3)
+#                 FROM gii_indicator_data_table AS t1
+#                 INNER JOIN gii_indicators_table AS t2 ON t1.indicator_id = t2.unique_indicator_id
+#                 INNER JOIN gii_common_id_table AS t3 ON  t2.common_id = t3.common_id
+#                 INNER JOIN adm0 AS t4 ON t1.area_id = t4.area_id
+#                 WHERE t1.year BETWEEN """+start_year+""" AND """+end_year+""" AND t1.admin_level = '"""+level+"""' AND t1.indicator_id= '"""+indicator_id+"""' {}"""
+
+
+#             mainSqlProvince = """SELECT t1.admin_level, t1.area_id, t1.year, t2.indicator_id, t1.value, t4.name_0, t4.name_1, t2.indicator_desc, t2.data, t2.unit, t3.common_id, t3.common_des, st_AsGeoJSON(t4.geom, 3)
+#                 FROM gii_indicator_data_table AS t1
+#                 INNER JOIN gii_indicators_table AS t2 ON t1.indicator_id = t2.unique_indicator_id
+#                 INNER JOIN gii_common_id_table AS t3 ON  t2.common_id = t3.common_id
+#                 INNER JOIN adm1 AS t4 ON t1.area_id = t4.area_id
+#                 WHERE t1.year BETWEEN """+start_year+""" AND """+end_year+"""  AND t1.admin_level = '"""+level+"""' AND t1.indicator_id= '"""+indicator_id+"""' {}"""
+
+#             if level=='country' and area_id == '9999' and country_id == '9999' :
+#                 sql = mainSqlCountry.format(" ", " ")
+
+#             elif level=='country' and area_id != '9999':
+#                 sql = mainSqlCountry.format(""" AND t1.area_id::text in ("""+area_id+""")""" , """ AND t1.area_id::text in ("""+area_id+""")""")
+
+#             elif level=='country' and area_id == '9999' and country_id !='':
+#                 sql = mainSqlCountry.format(""" AND t4.id_0= """+country_id+""" """ , """ AND t4.id_0= """+country_id+""" """)
+
+#             elif level=='country' and area_id == '9999' and country_id =='':
+#                 sql = mainSqlCountry.format(" ", " ")
+
+#             elif level=='province' and area_id == '9999' and country_id == '9999':
+#                 sql = mainSqlProvince.format(" ", " ")
+
+#             elif level=='province' and area_id != '9999':
+#                 sql = mainSqlProvince.format(""" AND t1.area_id::text in ("""+area_id+""")""" , """ AND t1.area_id::text in ("""+area_id+""")""")
+
+#             elif level=='province' and area_id == '9999' and country_id !='':
+
+#                 sql = mainSqlProvince.format(""" AND t4.id_0= """+country_id+""" """ , """ AND t4.id_0= """+country_id+""" """)
+
+#             elif level=='province' and area_id == '9999' and country_id =='':
+#                 sql = mainSqlProvince.format(" ", " ")
+
+#             cursor.execute(sql)
+#             data = cursor.fetchall()
+
+#             for row in data:
+#                 if level=='country':
+#                     feature_prop = {
+#                     "admin_level": row[0],
+#                     "area_id": row[1],
+#                     "year": row[2],
+#                     "indicator id": row[3],
+#                     "value": row[4],
+#                     "name_0": row[5],
+#                     "indicator_desc": row[6],
+#                     "data": row[7],
+#                     "unit": row[8],
+#                     "common_id": row[9],
+#                     "common_des": row[10],
+#                     }
+
+#                     feature = {
+#                     "type": "Feature",
+#                     "name": row[5],
+#                     "id": row[1],
+#                     "properties": feature_prop,
+#                     "geometry": json.loads(row[11])
+#                     }
+#                 else:
+#                     feature_prop = {
+#                     "admin_level": row[0],
+#                     "area_id": row[1],
+#                     "year": row[2],
+#                     "indicator id": row[3],
+#                     "value": row[4],
+#                     "name_0": row[5],
+#                     "name_1": row[6],
+#                     "indicator_desc": row[7],
+#                     "data": row[8],
+#                     "unit": row[9],
+#                     "common_id": row[10],
+#                     "common_des": row[11],
+
+#                     }
+
+#                     feature = {
+#                     "type": "Feature",
+#                     "name": row[6],
+#                     "id": row[1],
+#                     "properties": feature_prop,
+#                     "geometry": json.loads(row[12])
+#                     }
+
+
+#                 features[0]["features"].append(feature)
+
+#         return features
+#     except Exception as e:
+#         return e
 
 
 
