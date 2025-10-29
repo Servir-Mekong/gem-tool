@@ -9,6 +9,7 @@ from django.conf import settings
 from django.db import connection
 from django.views.decorators.csrf import csrf_exempt
 import json
+from psycopg2 import sql
 
 def get_gii(level, area_id, country_id, year):
     try:
