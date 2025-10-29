@@ -10,6 +10,7 @@ from django.db import connection
 from django.views.decorators.csrf import csrf_exempt
 import json
 from psycopg2 import sql
+import traceback
 
 def get_gii(level, area_id, country_id, year):
     try:
@@ -777,110 +778,109 @@ def download_gii_dimension(area_id, level, common_id, country_id, start_year, en
 
 
 def download_gii_indicator(area_id, level, indicator_id, country_id, start_year, end_year):
-    """
-    level: 'country' or 'province'
-    area_id: '9999' for all or a comma-separated list of ids: '1,2,3' (as text)
-    country_id: '9999' or '' means all; otherwise numeric id_0
-    indicator_id: must be the UNIQUE indicator id (maps to gii_indicators_table.unique_indicator_id)
-    start_year, end_year: strings or ints
-    """
     try:
         features = [{"type": "FeatureCollection", "features": []}]
 
-        # Choose admin table + name columns
-        if level == "country":
-            adm_table = sql.Identifier("adm0")
-            name_cols = sql.SQL("t4.name_0")
-            extra_select = sql.SQL("t4.name_0")
-        elif level == "province":
-            adm_table = sql.Identifier("adm1")
-            name_cols = sql.SQL("t4.name_0, t4.name_1")
-            extra_select = sql.SQL("t4.name_0, t4.name_1")
-        else:
-            raise ValueError("level must be 'country' or 'province'")
+        if level not in ("country", "province"):
+            return {"error": "ValueError", "message": "level must be 'country' or 'province'"}
 
-        # Build dynamic optional WHERE fragments
-        where_fragments = [sql.SQL("t1.year BETWEEN %s AND %s"),
-                           sql.SQL("t1.admin_level = %s"),
-                           sql.SQL("t2.unique_indicator_id = %s")]  # filter by UNIQUE id
+        # Admin table / names by level
+        adm_table = "adm0" if level == "country" else "adm1"
+        name_cols  = "t4.name_0" if level == "country" else "t4.name_0, t4.name_1"
 
-        params = [int(start_year), int(end_year), level, indicator_id]
+        # Dynamic WHERE filters used in BOTH subqueries
+        # Base params: year range, level, indicator_id (UNIQUE), then optional country/area
+        where_clauses = [
+            "t1.year BETWEEN %s AND %s",
+            "t1.admin_level = %s",
+            "t2.unique_indicator_id = %s"
+        ]
+        base_params = [int(start_year), int(end_year), level, indicator_id]
 
-        # country filter (on adm table)
+        # Optional: country filter
+        country_params = []
         if country_id not in (None, "", "9999"):
-            where_fragments.append(sql.SQL("t4.id_0 = %s"))
-            params.append(int(country_id))
+            where_clauses.append("t4.id_0 = %s")
+            country_params.append(int(country_id))
 
-        # area filter (list)
+        # Optional: area filter (accepts comma-separated string)
+        area_params = []
         if area_id not in (None, "9999"):
-            # area_id expected as comma-separated string of ids
             area_list = [x.strip() for x in str(area_id).split(",") if x.strip()]
-            where_fragments.append(sql.SQL("t1.area_id::text = ANY(%s)"))
-            params.append(area_list)
+            # t1.area_id is compared as text
+            where_clauses.append("t1.area_id::text = ANY(%s)")
+            area_params.append(area_list)
 
-        where_sql = sql.SQL(" AND ").join(where_fragments)
+        where_sql = " AND ".join(where_clauses)
+        params_common = base_params + country_params + area_params  # order matters
+        # We will use the same params for female and male subqueries
+        params = params_common + params_common
 
-        # Main SQL using CTE and FILTER to pivot female/male
-        # We intentionally SELECT unique_indicator_id as indicator_id to match the input.
-        query = sql.SQL("""
-            WITH base AS (
-                SELECT
-                    t1.admin_level,
-                    t1.area_id,
-                    t1.year,
-                    t1.value,
-                    t2.unique_indicator_id AS indicator_id,
-                    t2.indicator_desc,
-                    t2.data,              -- 'female' | 'male'
-                    t2.unit,
-                    t3.common_id,
-                    t3.common_des,
-                    {name_cols},
-                    ST_AsGeoJSON(t4.geom, 3) AS geom_json
-                FROM gii_indicator_data_table t1
-                LEFT JOIN gii_indicators_table t2
-                    ON t1.indicator_id = t2.unique_indicator_id
-                LEFT JOIN gii_common_id_table t3
-                    ON t2.common_id = t3.common_id
-                LEFT JOIN {adm_table} t4
-                    ON t1.area_id = t4.area_id
-                WHERE {where_sql}
-                  AND t2.data IN ('female','male')
-            )
+        # Subquery templates (only differ by t2.data = 'female'/'male')
+        female_sub = f"""
             SELECT
-                admin_level,
-                area_id,
+                t1.admin_level,
+                t1.area_id,
+                t1.year,
+                t2.unique_indicator_id AS indicator_id,
+                t1.value,
                 {name_cols},
-                year,
-                MAX(value) FILTER (WHERE data = 'female') AS female,
-                MAX(value) FILTER (WHERE data = 'male')   AS male,
-                common_id,
-                common_des,
-                indicator_id,
-                indicator_desc,
-                geom_json
-            FROM base
-            GROUP BY
-                admin_level, area_id, {name_cols}, year,
-                common_id, common_des, indicator_id, indicator_desc, geom_json
-            ORDER BY area_id, year;
-        """).format(
-            adm_table=adm_table,
-            name_cols=name_cols,
-            where_sql=where_sql
-        )
+                t2.indicator_desc,
+                t2.data,
+                t2.unit,
+                t3.common_id,
+                t3.common_des,
+                ST_AsGeoJSON(t4.geom, 3) AS st_asgeojson
+            FROM gii_indicator_data_table AS t1
+            LEFT JOIN gii_indicators_table AS t2 ON t1.indicator_id = t2.unique_indicator_id
+            LEFT JOIN gii_common_id_table AS t3 ON t2.common_id = t3.common_id
+            LEFT JOIN {adm_table} AS t4 ON t1.area_id = t4.area_id
+            WHERE {where_sql} AND t2.data = 'female'
+        """
+
+        male_sub = f"""
+            SELECT
+                t1.admin_level,
+                t1.area_id,
+                t1.year,
+                t2.unique_indicator_id AS indicator_id,
+                t1.value,
+                {name_cols},
+                t2.indicator_desc,
+                t2.data,
+                t2.unit,
+                t3.common_id,
+                t3.common_des,
+                ST_AsGeoJSON(t4.geom, 3) AS st_asgeojson
+            FROM gii_indicator_data_table AS t1
+            LEFT JOIN gii_indicators_table AS t2 ON t1.indicator_id = t2.unique_indicator_id
+            LEFT JOIN gii_common_id_table AS t3 ON t2.common_id = t3.common_id
+            LEFT JOIN {adm_table} AS t4 ON t1.area_id = t4.area_id
+            WHERE {where_sql} AND t2.data = 'male'
+        """
+
+        # Final SQL: keep output columns/ordering exactly like your old function expected
+        if level == "country":
+            select_cols = "female.admin_level, female.area_id, female.name_0, female.year, female.value as female, male.value as male, female.common_id, female.common_des, female.indicator_id, female.indicator_desc, female.st_asgeojson"
+        else:
+            select_cols = "female.admin_level, female.area_id, female.name_0, female.name_1, female.year, female.value as female, male.value as male, female.common_id, female.common_des, female.indicator_id, female.indicator_desc, female.st_asgeojson"
+
+        sql_text = f"""
+            SELECT {select_cols}
+            FROM ({female_sub}) AS female
+            LEFT JOIN ({male_sub})   AS male
+            ON female.area_id = male.area_id
+               AND female.year = male.year
+               AND female.common_id = male.common_id
+            ORDER BY female.area_id, female.year;
+        """
 
         with connection.cursor() as cursor:
-            cursor.execute(query, params)
-            rows = cursor.fetchall()
+            cursor.execute(sql_text, params)
+            data = cursor.fetchall()
 
-        # Map row indexes based on level (because name columns differ)
-        # Columns:
-        # country:  0 admin_level, 1 area_id, 2 name_0,            3 year, 4 f, 5 m, 6 common_id, 7 common_des, 8 indicator_id, 9 indicator_desc, 10 geom_json
-        # province: 0 admin_level, 1 area_id, 2 name_0, 3 name_1,  4 year, 5 f, 6 m, 7 common_id, 8 common_des, 9 indicator_id, 10 indicator_desc, 11 geom_json
-
-        for row in rows:
-            if level == "country":
+        for row in data:
+            if level == 'country':
                 feature_prop = {
                     "admin_level": row[0],
                     "area_id": row[1],
@@ -890,8 +890,7 @@ def download_gii_indicator(area_id, level, indicator_id, country_id, start_year,
                     "male": row[5],
                     "common_id": row[6],
                     "common_des": row[7],
-                    # These two now match the input (unique id + its desc)
-                    "indicator_id": row[8],
+                    "indicator_id": row[8],      # now equals unique id you passed in
                     "indicator_desc": row[9],
                 }
                 feature = {
@@ -901,7 +900,7 @@ def download_gii_indicator(area_id, level, indicator_id, country_id, start_year,
                     "properties": feature_prop,
                     "geometry": json.loads(row[10]) if row[10] else None
                 }
-            else:  # province
+            else:
                 feature_prop = {
                     "admin_level": row[0],
                     "area_id": row[1],
@@ -912,7 +911,7 @@ def download_gii_indicator(area_id, level, indicator_id, country_id, start_year,
                     "male": row[6],
                     "common_id": row[7],
                     "common_des": row[8],
-                    "indicator_id": row[9],        # unique id echoed
+                    "indicator_id": row[9],      # unique id echoed
                     "indicator_desc": row[10],
                 }
                 feature = {
@@ -928,8 +927,12 @@ def download_gii_indicator(area_id, level, indicator_id, country_id, start_year,
         return features
 
     except Exception as e:
-        return e
-
+        return {
+            "error": type(e).__name__,
+            "message": str(e),
+            "where": "download_gii_indicator",
+            "trace": traceback.format_exc(),  # remove in prod if you prefer
+        }
 
 
 
